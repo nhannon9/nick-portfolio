@@ -775,6 +775,53 @@ img, svg, video {
 }
 /* .termina-bg { background-image: url('images/minecraft-landscape.jpg'); } */
 
+/* Blog Section */
+.blog-section {
+    /* Define theme colors for the blog section */
+    --section-accent-color: var(--color-info); /* Teal (#17a2b8) */
+
+    /* This section uses the content-card layout */
+    /* Style the card specifically for the blog */
+    --card-bg: var(--color-bg-light); /* Use the main light background for the card */
+    --card-text-color: var(--color-text-dark); /* Dark text on light card */
+    --card-heading-color: var(--color-text-dark); /* Standard dark heading */
+    --card-icon-color: var(--section-accent-color); /* Teal icon */
+    --card-text-secondary-color: var(--color-text-medium); /* Gray for paragraph */
+
+    /* Set the overall section background */
+    background-color: var(--color-bg-medium); /* Light gray, matches tech section */
+}
+
+/* Further specific styling for the blog card itself */
+.blog-section .blog-card {
+    border: 1px solid var(--border-color); /* Add a subtle border to the light card */
+    box-shadow: var(--shadow-md); /* Standard medium shadow */
+}
+
+/* Style the subtitle using the section's accent color */
+.blog-section .section-subtitle {
+    color: var(--section-accent-color);
+}
+
+/* Ensure the chosen button style (btn-ghost-dark) fits */
+.blog-section .cta-button.btn-ghost-dark {
+    color: var(--section-accent-color); /* Use accent color for text/border */
+    border-color: var(--section-accent-color);
+}
+.blog-section .cta-button.btn-ghost-dark:hover,
+.blog-section .cta-button.btn-ghost-dark:focus {
+    background-color: var(--section-accent-color); /* Fill with accent color on hover */
+    color: var(--color-text-light); /* Light text on hover */
+}
+
+/* Style the optional background pattern */
+.blog-section .blog-bg-pattern {
+    /* Example: Use a very subtle pattern */
+    background-image: url('images/paper-fibers.png'); /* Replace with your pattern */
+    background-color: var(--color-bg-medium); /* Ensure base color */
+    opacity: 0.2; /* Adjust opacity */
+    z-index: 1;
+}
 
 /* ==========================================================================
    8. Footer
