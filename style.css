@@ -670,15 +670,60 @@ img, svg, video {
    7. Section Specific Styling & Theming
    ========================================================================== */
 
-/* Tech Section */
+/* ==========================================================================
+   7. Section Specific Styling & Theming
+   ========================================================================== */
+
+/* Tech Section (SysFX Branding) */
 .tech-section {
-    --section-accent-color: var(--color-secondary); /* Blue */
-    --section-icon-bg: var(--color-secondary);
-    background-color: var(--color-bg-medium); /* Light gray background */
+    /* Define SysFX colors as variables *within this section* for easier use */
+    --sysfx-dark-green-1: #004721;
+    --sysfx-dark-green-2: #004d24;
+    --sysfx-mid-green-1: #009c4a;
+    --sysfx-mid-green-2: #058743; /* Using this as the main accent */
+    --sysfx-bright-green: #00d062;
+
+    /* Override the general section accent color for this section */
+    --section-accent-color: var(--sysfx-mid-green-2); /* #058743 */
+
+    background-color: var(--color-bg-medium); /* Keep light gray background for contrast */
 }
+
+/* Apply the accent color to the icon badge background */
+.tech-section .icon-badge {
+    background-color: var(--section-accent-color); /* #058743 */
+    color: var(--color-text-light); /* Keep icon light */
+}
+
+/* Style the heading with a prominent SysFX green */
+.tech-section .split-content h2 {
+    color: var(--sysfx-dark-green-2); /* #004d24 - Darker green for heading */
+}
+
+/* The subtitle (.section-subtitle) automatically uses --section-accent-color (#058743) */
+
+/* Override the primary button style specifically for the tech section */
+.tech-section .cta-button.btn-primary {
+    background: linear-gradient(to right, var(--sysfx-mid-green-2), var(--sysfx-mid-green-1)); /* #058743 -> #009c4a */
+    color: var(--color-text-light);
+    /* Optional: Adjust shadow color using a dark SysFX green */
+    box-shadow: 0 4px 15px rgba(0, 77, 36, 0.25); /* Shadow using #004d24 */
+}
+.tech-section .cta-button.btn-primary:hover,
+.tech-section .cta-button.btn-primary:focus {
+    background: linear-gradient(to right, var(--sysfx-bright-green), var(--sysfx-mid-green-2)); /* #00d062 -> #058743 */
+    color: var(--color-text-light); /* Keep text light */
+    filter: none; /* Remove any inherited brightness filter */
+    box-shadow: 0 6px 20px rgba(0, 77, 36, 0.35); /* Slightly stronger shadow */
+    transform: translateY(-3px); /* Keep hover effect */
+}
+
+/* Optional: Style the visual element if desired */
+/*
 .tech-section .split-visual img {
-    /* Add specific styling if needed */
+     border: 3px solid var(--sysfx-dark-green-1);
 }
+*/
 
 /* Creation Section */
 .creation-section {
