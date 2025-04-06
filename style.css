@@ -1,88 +1,174 @@
-/* --- CSS Variables (Theme Configuration) --- */
+/* ==========================================================================
+   1. Base & Variables
+   ========================================================================== */
+
 :root {
-    --primary-color: #6a11cb; /* Deep Purple */
-    --secondary-color: #2575fc; /* Bright Blue */
-    --accent-color: #facc15; /* Yellow/Gold for accents */
-    --text-light: #f8f9fa;
-    --text-dark: #212529;
-    --bg-light: #ffffff;
-    --bg-dark: #1a1a1d; /* Slightly off-black */
-    --bg-section-odd: #f1f3f5; /* Light gray for alternating */
-    --bg-section-even: var(--bg-light);
+    /* Color Palette */
+    --color-primary: #6a11cb;       /* Deep Purple */
+    --color-secondary: #2575fc;     /* Bright Blue */
+    --color-accent: #facc15;        /* Gold/Yellow */
+    --color-success: #28a745;       /* Green */
+    --color-danger: #dc3545;        /* Red */
+    --color-warning: #ffc107;       /* Yellow */
+    --color-info: #17a2b8;         /* Teal */
+
+    --color-text-light: #f8f9fa;
+    --color-text-medium: #6c757d;   /* Gray */
+    --color-text-dark: #212529;
+
+    --color-bg-light: #ffffff;
+    --color-bg-medium: #f1f3f5;    /* Light Gray */
+    --color-bg-dark: #1a1a1d;      /* Near Black */
+    --color-bg-darker: #111113;
+
+    /* Typography */
     --font-heading: 'Playfair Display', serif;
-    --font-body: 'Montserrat', sans-serif;
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --font-body: 'Inter', sans-serif;
+    --base-font-size: 16px; /* Typically 16px */
+    --line-height-base: 1.7;
+    --line-height-heading: 1.3;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem;  /* 8px */
+    --spacing-md: 1rem;    /* 16px */
+    --spacing-lg: 1.5rem;  /* 24px */
+    --spacing-xl: 2.5rem;  /* 40px */
+    --spacing-xxl: 4rem;   /* 64px */
+    --spacing-xxxl: 6rem;  /* 96px */
+
+    /* Borders & Shadows */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    --border-radius-pill: 50px;
+    --border-width: 1px;
+    --border-color: #dee2e6;
+
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
-    --border-radius: 8px;
-    --header-height: 70px;
+    --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+    /* Transitions */
+    --transition-speed-fast: 0.2s;
+    --transition-speed-normal: 0.3s;
+    --transition-speed-slow: 0.5s;
+    --transition-timing: ease-in-out;
+
+    /* Header */
+    --header-height: 75px;
+    --header-bg: rgba(255, 255, 255, 0.85);
+    --header-border: var(--border-color);
+    --header-shadow: var(--shadow-sm);
 }
 
-/* --- Reset & Basic Setup --- */
-* {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
+    font-size: var(--base-font-size);
     scroll-behavior: smooth;
-    font-size: 16px; /* Base font size */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
     font-family: var(--font-body);
-    line-height: 1.7;
-    background-color: var(--bg-light);
-    color: var(--text-dark);
+    line-height: var(--line-height-base);
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
     overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-a:hover {
-    color: var(--secondary-color);
+main {
+    overflow: hidden; /* Contain floats/margins */
 }
 
-img {
+/* ==========================================================================
+   2. Typography & Basic Elements
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 800; /* Bolder headings */
+    line-height: var(--line-height-heading);
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-md);
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); } /* Responsive H1 */
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); } /* Responsive H2 */
+h3 { font-size: clamp(1.4rem, 3vw, 2rem); }
+h4 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
+
+p {
+    margin-bottom: var(--spacing-lg);
+    max-width: 70ch; /* Limit line length for readability */
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-speed-fast) var(--transition-timing);
+}
+a:hover, a:focus {
+    color: var(--color-secondary);
+    outline: 2px solid transparent; /* Basic focus style */
+    outline-offset: 2px;
+}
+a:focus-visible { /* More visible focus style */
+    outline-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(var(--color-secondary-rgb, 37, 117, 252), 0.3); /* Add RGB values for secondary color if needed */
+}
+
+
+img, svg, video {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    line-height: 1.3;
-    color: var(--text-dark); /* Default heading color */
+/* Helper class for screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
-h1 { font-size: 3rem; margin-bottom: 1rem;}
-h2 { font-size: 2.2rem; margin-bottom: 1rem; }
-p { margin-bottom: 1rem; max-width: 65ch; } /* Limit paragraph width for readability */
+/* ==========================================================================
+   3. Header
+   ========================================================================== */
 
-
-/* --- Header Styling --- */
 .site-header {
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-    position: fixed; /* Stick to top */
+    background-color: var(--header-bg);
+    backdrop-filter: blur(12px);
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: var(--header-height);
     z-index: 1000;
-    box-shadow: var(--shadow-sm);
-    border-bottom: 1px solid #eee;
+    border-bottom: var(--border-width) solid var(--header-border);
+    box-shadow: var(--header-shadow);
+    transition: background-color var(--transition-speed-normal) var(--transition-timing);
 }
 
-.header-content {
-    max-width: 1300px;
+.header-container {
+    max-width: 1400px; /* Wider container */
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 var(--spacing-lg);
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -91,317 +177,719 @@ p { margin-bottom: 1rem; max-width: 65ch; } /* Limit paragraph width for readabi
 
 .logo a {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-dark);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-text-dark);
+    letter-spacing: -0.5px;
+}
+.logo a:hover, .logo a:focus {
+    color: var(--color-primary);
 }
 
-.main-nav a {
-    margin-left: 1.5rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    position: relative;
-    padding-bottom: 4px;
+.main-nav {
+    display: flex;
+    gap: var(--spacing-lg);
 }
-.main-nav a::after { /* Underline effect */
+.main-nav a {
+    font-weight: 500;
+    color: var(--color-text-medium);
+    position: relative;
+    padding: var(--spacing-sm) 0;
+    transition: color var(--transition-speed-fast) var(--transition-timing);
+}
+.main-nav a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
+    background-color: var(--color-primary);
+    transition: width var(--transition-speed-normal) var(--transition-timing);
 }
-.main-nav a:hover::after {
+.main-nav a:hover,
+.main-nav a:focus,
+.main-nav a.active { /* Add 'active' class via JS if needed */
+    color: var(--color-text-dark);
+}
+.main-nav a:hover::after,
+.main-nav a:focus::after,
+.main-nav a.active::after {
     width: 100%;
 }
 
 .header-utils {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: var(--spacing-lg);
+}
+
+/* Music Control Button */
+.music-control-button {
+    background-color: transparent;
+    border: none;
+    color: var(--color-text-medium);
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    line-height: 0; /* Align icon nicely */
+    transition: color var(--transition-speed-fast) var(--transition-timing), transform var(--transition-speed-fast) var(--transition-timing);
+    border-radius: var(--border-radius-sm); /* For focus outline */
+}
+.music-control-button:hover {
+    color: var(--color-primary);
+    transform: scale(1.1);
+}
+.music-control-button:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+}
+.music-control-button.playing {
+    color: var(--color-success); /* Indicate playing state */
+}
+.music-control-button.playing:hover {
+    color: darken(var(--color-success), 10%);
 }
 
 .datetime-widget {
-    font-size: 0.85rem;
-    color: #555;
-    white-space: nowrap; /* Prevent wrapping */
+    font-size: 0.8rem;
+    color: var(--color-text-medium);
+    white-space: nowrap;
+    display: none; /* Hidden by default, show on larger screens */
+}
+@media (min-width: 992px) {
+    .datetime-widget { display: block; }
 }
 
-.social-links a {
-    color: #555;
+.social-links-header {
+    display: flex;
+    gap: var(--spacing-md);
+}
+.social-links-header a {
+    color: var(--color-text-medium);
     font-size: 1.1rem;
-    margin-left: 0.8rem;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color var(--transition-speed-fast) var(--transition-timing), transform var(--transition-speed-fast) var(--transition-timing);
 }
-.social-links a:hover {
-    color: var(--primary-color);
-    transform: scale(1.1);
+.social-links-header a:hover,
+.social-links-header a:focus {
+    color: var(--color-primary);
+    transform: scale(1.15) translateY(-1px);
 }
 
-/* --- Hero Section --- */
+/* Mobile Navigation (Hidden by default, needs JS to toggle) */
+.mobile-menu-toggle { display: none; }
+@media (max-width: 991px) {
+    .main-nav { display: none; }
+    /* Add styles for .mobile-menu-toggle button */
+    /* Add styles for an off-canvas mobile menu */
+}
+
+
+/* ==========================================================================
+   4. Hero Section
+   ========================================================================== */
+
 .hero {
-    height: 75vh; /* Adjust height as needed */
-    min-height: 400px;
+    padding-top: var(--header-height); /* Account for fixed header */
+    height: 80vh; /* Adjust height */
+    min-height: 500px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--text-light);
-    /* Example background - Replace with your image */
-    background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
-    margin-top: var(--header-height); /* Push below fixed header */
+    color: var(--color-text-light);
+    overflow: hidden; /* Contain background elements */
+}
+
+.hero-background-element {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+    /* Example: Subtle animated gradient or static image */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    /* Or use a high-res image:
+       background: url('images/hero-background.jpg') no-repeat center center/cover; */
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Gradient overlay for text readability */
-    background: linear-gradient(135deg, rgba(106, 17, 203, 0.7), rgba(37, 117, 252, 0.7));
-    z-index: 1;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Darken the background slightly */
+    z-index: 2;
 }
 
-.hero-content-main {
+.hero-content {
     position: relative;
-    z-index: 2;
-    padding: 1rem;
+    z-index: 3;
+    padding: var(--spacing-lg);
+    max-width: 900px;
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
-    color: var(--text-light);
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    color: var(--color-text-light);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    margin-bottom: var(--spacing-sm);
 }
 
 .hero .subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     font-weight: 300;
     opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
-    color: var(--text-light);
+    max-width: 650px;
+    margin: 0 auto var(--spacing-xl) auto;
+    color: var(--color-text-light);
 }
 
-.scroll-down {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.8rem;
-    z-index: 3;
-    animation: bounce 2s infinite ease-in-out;
+.hero .hero-cta {
+    font-size: 1.1rem;
+    padding: var(--spacing-md) var(--spacing-xl);
 }
-.scroll-down:hover {
-    color: var(--text-light);
+.hero .hero-cta i {
+    transition: transform var(--transition-speed-normal) ease-in-out;
+}
+.hero .hero-cta:hover i {
+    transform: translateY(4px);
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-  40% {transform: translateX(-50%) translateY(-10px);}
-  60% {transform: translateX(-50%) translateY(-5px);}
+/* ==========================================================================
+   5. Interest Sections - General & Layouts
+   ========================================================================== */
+
+/* Anchor point margin */
+#interests-start {
+    display: block;
+    height: 0;
+    margin-top: calc(-1 * var(--header-height)); /* Offset for fixed header */
+    visibility: hidden;
 }
 
-
-/* --- Interests Container --- */
-.interests-container {
-    /* No extra styles needed unless you want overall padding */
-    /* Padding is handled by individual sections */
+.interests-wrapper {
+    /* No specific styles needed now, sections handle their own spacing */
 }
 
-/* --- Interest Section General Styling --- */
 .interest-section {
-    padding: 5rem 1.5rem; /* Generous padding */
     position: relative;
-    overflow: hidden; /* Contain background elements */
-    display: flex;
+    overflow: hidden; /* Crucial for absolute positioned children */
+    padding: var(--spacing-xxxl) 0; /* Vertical padding */
+}
+
+.section-container {
+    max-width: 1200px; /* Content max width */
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg); /* Horizontal padding */
+    position: relative; /* For absolutely positioned elements within */
+    z-index: 2; /* Above section-wide backgrounds */
+}
+
+.section-subtitle {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--section-accent-color, var(--color-primary)); /* Use section specific or default */
+    margin-bottom: var(--spacing-lg);
+}
+
+.icon-badge {
+    display: inline-flex; /* Changed from inline-block for better centering potential */
     align-items: center;
-    justify-content: center; /* Center content by default */
-    min-height: 60vh; /* Give sections decent height */
-}
-
-/* Alternating Backgrounds for visual separation */
-.interest-section:nth-child(odd) {
-    background-color: var(--bg-section-odd);
-}
-.interest-section:nth-child(even) {
-    background-color: var(--bg-section-even);
-}
-
-.section-content {
-    position: relative; /* Above background */
-    z-index: 2;
-    text-align: center; /* Center text within content block */
-    max-width: 700px;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent card effect */
-    padding: 2.5rem;
-    border-radius: var(--border-radius);
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: var(--section-icon-bg, var(--color-primary));
+    color: var(--section-icon-color, var(--color-text-light));
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-lg);
     box-shadow: var(--shadow-md);
-    backdrop-filter: blur(5px); /* Subtle blur behind content */
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: transform var(--transition-speed-normal) cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow var(--transition-speed-normal) var(--transition-timing);
 }
-.interest-section:hover .section-content {
-   transform: translateY(-10px);
-   box-shadow: var(--shadow-lg);
-}
-
-
-.section-icon {
-    font-size: 3.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    display: inline-block; /* Allows centering */
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
-}
-.interest-section:hover .section-icon {
-    transform: scale(1.15) rotate(-5deg);
+.interest-section:hover .icon-badge {
+    transform: translateY(-5px) scale(1.05) rotate(-5deg);
+    box-shadow: var(--shadow-lg);
 }
 
 
-.section-content h2 {
-    color: var(--primary-color); /* Use primary color for section titles */
+/* --- Layout Style 1: Split Screen --- */
+.split-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-xxl);
+}
+.split-layout .split-content,
+.split-layout .split-visual {
+    flex: 1; /* Each takes half the space */
+    min-width: 0; /* Prevent overflow issues */
+}
+.split-layout .text-content {
+    padding-right: var(--spacing-lg); /* Spacing towards visual */
+}
+.split-layout.reversed .text-content {
+    padding-right: 0;
+    padding-left: var(--spacing-lg); /* Spacing towards visual */
+}
+.split-layout .split-visual img {
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    object-fit: cover;
+    width: 100%;
+    /* Consider adding aspect-ratio for consistent sizing */
+    /* aspect-ratio: 16 / 10; */
+}
+.split-layout.reversed {
+    flex-direction: row-reverse;
+}
+@media (max-width: 991px) { /* Stack on tablets and below */
+    .split-layout,
+    .split-layout.reversed {
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        text-align: center;
+    }
+    .split-layout .split-content,
+    .split-layout.reversed .split-content {
+         order: 1; /* Text always comes first */
+         padding-left: 0;
+         padding-right: 0;
+    }
+     .split-layout .split-visual,
+    .split-layout.reversed .split-visual {
+         order: 0;
+         max-width: 500px; /* Limit image width when stacked */
+         margin: 0 auto var(--spacing-xl) auto;
+    }
+    .split-layout .icon-badge { margin-left: auto; margin-right: auto; }
 }
 
-.section-content p {
-    color: #444; /* Slightly darker gray for readability */
-    margin-left: auto; /* Center the paragraph block */
+
+/* --- Layout Style 2: Full Width Background Focus --- */
+.interest-section.centered-content-section {
+    /* Ensure padding is applied to the section itself */
+    padding-top: var(--spacing-xxxl);
+    padding-bottom: var(--spacing-xxxl);
+}
+.centered-content {
+    text-align: center;
+    position: relative;
+    z-index: 3; /* Above overlay */
+}
+.centered-content h2,
+.centered-content p,
+.centered-content .section-subtitle {
+    color: var(--section-text-color, var(--color-text-light)); /* Default to light text on overlays */
+    max-width: 750px; /* Limit width for centered text */
+    margin-left: auto;
     margin-right: auto;
 }
+.centered-content .icon-badge {
+     margin-left: auto;
+     margin-right: auto;
+}
+/* Shared Background & Overlay Styles */
+.section-background {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform var(--transition-speed-slow) var(--transition-timing);
+}
+.interest-section:hover .section-background {
+    transform: scale(1.03); /* Subtle zoom on hover */
+}
+.section-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5); /* Default overlay */
+    opacity: 0.8; /* Adjust opacity */
+}
+.section-overlay.dark-overlay { background-color: rgba(10, 10, 10, 0.7); }
+.section-overlay.gentle-overlay { background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)); }
 
-/* --- Button Styling --- */
-.btn {
+
+/* --- Layout Style 3: Focused Content Card --- */
+.content-card-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Ensure section has some height */
+}
+.content-card {
+    background-color: var(--card-bg, var(--color-bg-dark)); /* Default dark card */
+    color: var(--card-text-color, var(--color-text-light));
+    padding: var(--spacing-xxl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 700px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    transition: transform var(--transition-speed-normal) var(--transition-timing),
+                box-shadow var(--transition-speed-normal) var(--transition-timing);
+}
+.interest-section:hover .content-card {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+.content-card h2 {
+    color: var(--card-heading-color, var(--color-text-light));
+}
+.content-card p {
+    color: var(--card-text-secondary-color, rgba(255,255,255,0.8));
+    margin-left: auto;
+    margin-right: auto;
+}
+.content-card .card-icon { /* Style icon within card */
+    font-size: 3rem;
+    color: var(--card-icon-color, var(--color-accent));
+    margin-bottom: var(--spacing-lg);
+}
+/* Optional background pattern for card sections */
+.section-background.music-bg-pattern {
+    background-image: url('images/subtle-pattern.png'); /* Replace with your pattern */
+    opacity: 0.05;
+    z-index: 1;
+}
+
+
+/* ==========================================================================
+   6. Buttons
+   ========================================================================== */
+
+.cta-button {
     display: inline-block;
-    padding: 0.8rem 1.8rem;
     font-family: var(--font-body);
-    font-weight: 600;
+    font-weight: 700; /* Bold buttons */
     font-size: 0.95rem;
-    border: none;
-    border-radius: 50px; /* Pill shape */
-    cursor: pointer;
-    transition: all 0.3s ease;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 1.5rem;
+    letter-spacing: 0.8px;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: none;
+    border-radius: var(--border-radius-pill);
+    cursor: pointer;
+    transition: all var(--transition-speed-normal) var(--transition-timing);
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* For potential pseudo-element effects */
+    z-index: 1;
 }
 
-.btn-primary {
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    color: var(--text-light);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.cta-button .icon-right {
+    margin-left: var(--spacing-sm);
+    display: inline-block; /* Prevent wrapping issues */
+    transition: transform var(--transition-speed-normal) var(--transition-timing);
+    vertical-align: middle; /* Align icon better */
 }
-.btn-primary:hover {
-    color: var(--text-light);
+.cta-button:hover .icon-right {
+    transform: translateX(4px);
+}
+
+/* Primary Button (Gradient) */
+.cta-button.btn-primary {
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    color: var(--color-text-light);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.cta-button.btn-primary:hover,
+.cta-button.btn-primary:focus {
+    color: var(--color-text-light);
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     filter: brightness(1.1);
 }
 
-.btn .icon-right {
-    margin-left: 0.6rem;
-    transition: transform 0.3s ease;
+/* Secondary Button (Solid Accent Color) */
+.cta-button.btn-secondary {
+    background-color: var(--section-accent-color, var(--color-accent)); /* Use section accent or default */
+    color: var(--color-text-dark);
+    box-shadow: var(--shadow-sm);
 }
-.btn:hover .icon-right {
-    transform: translateX(4px);
-}
-
-
-/* --- Section Backgrounds (Examples) --- */
-.section-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.1; /* Subtle background patterns/images */
-    background-size: cover;
-    background-position: center;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.interest-section:hover .section-bg {
-    opacity: 0.15; /* Slightly enhance on hover */
-    transform: scale(1.03);
+.cta-button.btn-secondary:hover,
+.cta-button.btn-secondary:focus {
+    background-color: darken(var(--section-accent-color, var(--color-accent)), 10%);
+    color: var(--color-text-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
-.tech-bg {
-    /* Example: Subtle circuit pattern or abstract tech image */
-     background-image: url('https://www.transparenttextures.com/patterns/diagmonds.png');
-     background-color: var(--secondary-color); /* Add base color */
+/* Ghost Button (Light - for dark backgrounds) */
+.cta-button.btn-ghost-light {
+    background-color: transparent;
+    color: var(--color-text-light);
+    border: 2px solid var(--color-text-light);
+}
+.cta-button.btn-ghost-light:hover,
+.cta-button.btn-ghost-light:focus {
+    background-color: var(--color-text-light);
+    color: var(--color-bg-dark); /* Text color matching dark bg */
 }
 
-.photo-bg {
-    /* Example: Soft focus nature shot or geometric shapes */
-     background-image: url('https://www.transparenttextures.com/patterns/soft-wallpaper.png');
-     background-color: #e85a71; /* Example color */
-     opacity: 0.15; /* Might need different opacity */
+/* Ghost Button (Dark - for light backgrounds) */
+.cta-button.btn-ghost-dark {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+.cta-button.btn-ghost-dark:hover,
+.cta-button.btn-ghost-dark:focus {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
 }
 
-.music-bg {
-    /* Example: Sound wave graphic or subtle gradient */
-     background-image: linear-gradient(45deg, #f8b195, #f67280, #c06c84);
-     opacity: 0.12;
+/* Specific Theme Buttons */
+.cta-button.btn-youtube {
+    background: linear-gradient(to right, #ff0000, #cc0000); /* YouTube Red */
+    color: var(--color-text-light);
+}
+.cta-button.btn-youtube:hover { filter: brightness(1.15); }
+
+.cta-button.btn-termina {
+    background: linear-gradient(to right, #6a8d73, #4e6b55); /* Earthy green */
+    color: var(--color-text-light);
+}
+.cta-button.btn-termina:hover { filter: brightness(1.1); }
+
+
+/* ==========================================================================
+   7. Section Specific Styling & Theming
+   ========================================================================== */
+
+/* Tech Section */
+.tech-section {
+    --section-accent-color: var(--color-secondary); /* Blue */
+    --section-icon-bg: var(--color-secondary);
+    background-color: var(--color-bg-medium); /* Light gray background */
+}
+.tech-section .split-visual img {
+    /* Add specific styling if needed */
 }
 
-/* --- Specific Section Tweaks (Optional Layout Variations) --- */
-/* Example: Make one section have content aligned left */
-/*
-.photo-section {
-    justify-content: flex-start; /* Align content container to the left */
-/* } */
-/* .photo-section .section-content {
-    text-align: left; /* Align text left */
-/*    margin-left: 5%; /* Add some margin */
-/* } */
-/* .photo-section .section-icon {
-    display: block; /* Not inline-block if text is left-aligned */
-/*    margin-bottom: 1rem;
-/* } */
+/* Creation Section */
+.creation-section {
+    --section-accent-color: #e85a71; /* Coral/Pink */
+    --section-icon-bg: var(--section-accent-color);
+    --section-text-color: var(--color-text-light);
+}
+/* .creation-bg { background-image: url('images/your-creation-bg.jpg'); } */
 
 
-/* --- Footer Styling --- */
+/* Music Section */
+.music-section {
+    /* This section uses the content-card layout, style the card */
+    --card-bg: var(--color-bg-darker);
+    --card-text-color: var(--color-text-light);
+    --card-heading-color: var(--color-accent); /* Gold heading */
+    --card-icon-color: var(--color-accent);
+    background-color: var(--color-bg-dark); /* Section bg can be slightly lighter */
+}
+.music-section .btn-ghost-light {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+.music-section .btn-ghost-light:hover,
+.music-section .btn-ghost-light:focus {
+    background-color: var(--color-accent);
+    color: var(--color-bg-dark);
+}
+/* .music-bg-pattern { background-image: url('images/soundwave-pattern.png'); opacity: 0.03; } */
+
+/* YouTube Section */
+.youtube-section {
+    --section-accent-color: #ff0000; /* YouTube Red */
+    --section-icon-bg: var(--section-accent-color);
+    background-color: #f9f9f9; /* Very light gray, like YouTube */
+}
+.youtube-section .split-visual img {
+    border: 1px solid var(--border-color); /* Subtle border like video thumbnails */
+}
+
+/* Termina Section */
+.termina-section {
+    --section-accent-color: #967a58; /* Brown/Wood color */
+    --section-icon-bg: var(--section-accent-color);
+    --section-text-color: var(--color-text-light);
+}
+.termina-section .section-overlay {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(20, 30, 10, 0.6)); /* Greenish tint */
+}
+/* .termina-bg { background-image: url('images/minecraft-landscape.jpg'); } */
+
+
+/* ==========================================================================
+   8. Footer
+   ========================================================================== */
+
 .site-footer {
-    background-color: var(--bg-dark);
-    color: rgba(255, 255, 255, 0.7);
-    padding: 2rem 1rem;
-    text-align: center;
+    background-color: var(--color-bg-darker);
+    color: var(--color-text-medium);
+    padding: var(--spacing-xl) 0;
+    margin-top: var(--spacing-xxxl);
     font-size: 0.9rem;
-    margin-top: 3rem; /* Ensure space above footer */
 }
-.site-footer p {
-    margin-bottom: 0;
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.footer-copyright {
+    text-align: center;
+    flex-basis: 100%; /* Full width on small screens */
+}
+@media (min-width: 768px) {
+    .footer-copyright {
+        text-align: left;
+        flex-basis: auto; /* Auto width on larger screens */
+    }
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin: 0 auto; /* Center on small screens */
+}
+@media (min-width: 768px) {
+     .footer-social { margin: 0; }
+}
+
+.footer-label {
+    font-weight: 500;
+    margin-right: var(--spacing-sm);
+}
+
+.footer-social a {
+    color: var(--color-text-medium);
+    font-size: 1.2rem;
+    transition: color var(--transition-speed-fast) var(--transition-timing), transform var(--transition-speed-fast) var(--transition-timing);
+}
+.footer-social a:hover,
+.footer-social a:focus {
+    color: var(--color-text-light);
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   9. Back to Top Button
+   ========================================================================== */
+
+.back-to-top {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    width: 45px;
+    height: 45px;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-md);
+    opacity: 0; /* Hidden by default */
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity var(--transition-speed-normal) var(--transition-timing),
+                visibility var(--transition-speed-normal) var(--transition-timing),
+                transform var(--transition-speed-normal) var(--transition-timing),
+                background-color var(--transition-speed-normal) var(--transition-timing);
+    z-index: 900;
+}
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.back-to-top:hover,
+.back-to-top:focus {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    transform: translateY(-3px) scale(1.05);
 }
 
 
-/* --- Responsiveness --- */
-@media (max-width: 992px) {
-    .header-content { padding: 0 1rem; }
-    .main-nav { display: none; } /* Hide full nav, consider mobile menu later */
-    .interest-section { padding: 4rem 1rem; min-height: auto; }
-    .section-content { padding: 2rem; }
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 1.8rem; }
+/* ==========================================================================
+   10. Animations & Transitions (Scroll Reveal)
+   ========================================================================== */
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px); /* Start slightly lower */
+    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
+                transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    will-change: opacity, transform; /* Optimize animation */
 }
 
-@media (max-width: 768px) {
-    :root { --header-height: 60px; }
-    .hero { height: 60vh; }
-    .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
-    .hero .subtitle { font-size: clamp(0.9rem, 4vw, 1.1rem); }
-    .datetime-widget { display: none; } /* Hide time/date on small screens */
-    .header-utils { gap: 1rem; }
-    .social-links a { font-size: 1rem; margin-left: 0.5rem; }
-    .interest-section { padding: 3rem 1rem; }
-    .section-content { width: 90%; /* Allow content to take more width */ }
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-@media (max-width: 480px) {
-    .logo a { font-size: 1.3rem; }
-    .btn { padding: 0.7rem 1.5rem; font-size: 0.9rem; }
-    .section-content { padding: 1.5rem; }
-    .section-icon { font-size: 3rem; margin-bottom: 1rem; }
+/* Optional: Add delay for staggered effect if needed */
+/* .reveal-on-scroll:nth-child(2) { transition-delay: 0.1s; } */
+/* .reveal-on-scroll:nth-child(3) { transition-delay: 0.2s; } */
+
+
+/* ==========================================================================
+   11. Responsive Adjustments (Add more as needed)
+   ========================================================================== */
+
+@media (max-width: 1199px) {
+    .section-container { max-width: 960px; }
+}
+
+@media (max-width: 991px) {
+    /* Header Adjustments already handled above (hiding nav) */
+    .section-container { max-width: 720px; }
+    .interest-section { padding: var(--spacing-xxl) 0; }
+    /* Split layout adjustments handled within its own block */
+}
+
+@media (max-width: 767px) {
+    :root { --header-height: 65px; }
+    html { font-size: 15px; } /* Slightly smaller base font */
+    .header-container { padding: 0 var(--spacing-md); }
+    .header-utils { gap: var(--spacing-md); }
+    .datetime-widget { display: none; }
+    .social-links-header { display: none; } /* Hide header socials, keep footer */
+    .hero { height: 70vh; min-height: 400px; }
+    .interest-section { padding: var(--spacing-xl) 0; }
+    .content-card { padding: var(--spacing-xl); }
+    .footer-container { flex-direction: column; text-align: center; }
+    .footer-social { margin-top: var(--spacing-md); }
+}
+
+@media (max-width: 575px) {
+    .logo a { font-size: 1.4rem; }
+    .music-control-button { font-size: 1.2rem; }
+    .hero .subtitle { max-width: 90%; }
+    .cta-button { padding: var(--spacing-sm) var(--spacing-lg); font-size: 0.9rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    .icon-badge { width: 60px; height: 60px; font-size: 1.6rem; }
+    .split-layout { gap: var(--spacing-lg); }
+    .back-to-top { width: 40px; height: 40px; font-size: 1rem; bottom: var(--spacing-md); right: var(--spacing-md); }
 }
