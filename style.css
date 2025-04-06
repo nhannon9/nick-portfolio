@@ -476,7 +476,7 @@ img, svg, video {
 
 
 /* --- Layout Style 2: Full Width Background Focus --- */
-.interest-section.centered-content-section {
+.interest-section.centered-content-section { /* Apply this class to sections using this layout if needed */
     /* Ensure padding is applied to the section itself */
     padding-top: var(--spacing-xxxl);
     padding-bottom: var(--spacing-xxxl);
@@ -667,11 +667,7 @@ img, svg, video {
 
 
 /* ==========================================================================
-   7. Section Specific Styling & Theming
-   ========================================================================== */
-
-/* ==========================================================================
-   7. Section Specific Styling & Theming
+   7. Section Specific Styling & Theming (Index Page)
    ========================================================================== */
 
 /* Tech Section (SysFX Branding) */
@@ -688,25 +684,17 @@ img, svg, video {
 
     background-color: var(--color-bg-medium); /* Keep light gray background for contrast */
 }
-
-/* Apply the accent color to the icon badge background */
 .tech-section .icon-badge {
     background-color: var(--section-accent-color); /* #058743 */
     color: var(--color-text-light); /* Keep icon light */
 }
-
-/* Style the heading with a prominent SysFX green */
 .tech-section .split-content h2 {
     color: var(--sysfx-dark-green-2); /* #004d24 - Darker green for heading */
 }
-
-/* The subtitle (.section-subtitle) automatically uses --section-accent-color (#058743) */
-
-/* Override the primary button style specifically for the tech section */
+/* Subtitle uses --section-accent-color (#058743) by default */
 .tech-section .cta-button.btn-primary {
     background: linear-gradient(to right, var(--sysfx-mid-green-2), var(--sysfx-mid-green-1)); /* #058743 -> #009c4a */
     color: var(--color-text-light);
-    /* Optional: Adjust shadow color using a dark SysFX green */
     box-shadow: 0 4px 15px rgba(0, 77, 36, 0.25); /* Shadow using #004d24 */
 }
 .tech-section .cta-button.btn-primary:hover,
@@ -717,19 +705,16 @@ img, svg, video {
     box-shadow: 0 6px 20px rgba(0, 77, 36, 0.35); /* Slightly stronger shadow */
     transform: translateY(-3px); /* Keep hover effect */
 }
-
 /* Optional: Style the visual element if desired */
-/*
-.tech-section .split-visual img {
-     border: 3px solid var(--sysfx-dark-green-1);
-}
-*/
+/* .tech-section .split-visual img { border: 3px solid var(--sysfx-dark-green-1); } */
+
 
 /* Creation Section */
 .creation-section {
     --section-accent-color: #e85a71; /* Coral/Pink */
     --section-icon-bg: var(--section-accent-color);
-    --section-text-color: var(--color-text-light);
+    --section-text-color: var(--color-text-light); /* For text on overlay */
+    /* Background image set inline or via specific class below */
 }
 /* .creation-bg { background-image: url('images/your-creation-bg.jpg'); } */
 
@@ -752,7 +737,12 @@ img, svg, video {
     background-color: var(--color-accent);
     color: var(--color-bg-dark);
 }
-/* .music-bg-pattern { background-image: url('images/soundwave-pattern.png'); opacity: 0.03; } */
+.section-background.music-bg-pattern {
+    /* Example, replace with your pattern */
+    /* background-image: url('images/soundwave-pattern.png'); */
+    opacity: 0.03;
+    z-index: 1;
+}
 
 /* YouTube Section */
 .youtube-section {
@@ -768,60 +758,14 @@ img, svg, video {
 .termina-section {
     --section-accent-color: #967a58; /* Brown/Wood color */
     --section-icon-bg: var(--section-accent-color);
-    --section-text-color: var(--color-text-light);
+    --section-text-color: var(--color-text-light); /* For text on overlay */
+    /* Background image set inline or via specific class below */
 }
 .termina-section .section-overlay {
     background: linear-gradient(rgba(0,0,0,0.2), rgba(20, 30, 10, 0.6)); /* Greenish tint */
 }
 /* .termina-bg { background-image: url('images/minecraft-landscape.jpg'); } */
 
-/* Blog Section */
-.blog-section {
-    /* Define theme colors for the blog section */
-    --section-accent-color: var(--color-info); /* Teal (#17a2b8) */
-
-    /* This section uses the content-card layout */
-    /* Style the card specifically for the blog */
-    --card-bg: var(--color-bg-light); /* Use the main light background for the card */
-    --card-text-color: var(--color-text-dark); /* Dark text on light card */
-    --card-heading-color: var(--color-text-dark); /* Standard dark heading */
-    --card-icon-color: var(--section-accent-color); /* Teal icon */
-    --card-text-secondary-color: var(--color-text-medium); /* Gray for paragraph */
-
-    /* Set the overall section background */
-    background-color: var(--color-bg-medium); /* Light gray, matches tech section */
-}
-
-/* Further specific styling for the blog card itself */
-.blog-section .blog-card {
-    border: 1px solid var(--border-color); /* Add a subtle border to the light card */
-    box-shadow: var(--shadow-md); /* Standard medium shadow */
-}
-
-/* Style the subtitle using the section's accent color */
-.blog-section .section-subtitle {
-    color: var(--section-accent-color);
-}
-
-/* Ensure the chosen button style (btn-ghost-dark) fits */
-.blog-section .cta-button.btn-ghost-dark {
-    color: var(--section-accent-color); /* Use accent color for text/border */
-    border-color: var(--section-accent-color);
-}
-.blog-section .cta-button.btn-ghost-dark:hover,
-.blog-section .cta-button.btn-ghost-dark:focus {
-    background-color: var(--section-accent-color); /* Fill with accent color on hover */
-    color: var(--color-text-light); /* Light text on hover */
-}
-
-/* Style the optional background pattern */
-.blog-section .blog-bg-pattern {
-    /* Example: Use a very subtle pattern */
-    background-image: url('images/paper-fibers.png'); /* Replace with your pattern */
-    background-color: var(--color-bg-medium); /* Ensure base color */
-    opacity: 0.2; /* Adjust opacity */
-    z-index: 1;
-}
 
 /* ==========================================================================
    8. Footer
@@ -946,7 +890,7 @@ img, svg, video {
 
 
 /* ==========================================================================
-   11. Responsive Adjustments (Add more as needed)
+   11. Responsive Adjustments (Global)
    ========================================================================== */
 
 @media (max-width: 1199px) {
@@ -993,40 +937,46 @@ img, svg, video {
 /* --- Apply theme variables scoped to the blog page --- */
 .blog-page {
     /* Define retro colors and fonts */
-    --blog-bg-color: #0a0a0a; /* Very dark background */
-    --blog-text-color: #cccccc; /* Light gray text */
-    --blog-accent-color: #00ff00; /* Bright Terminal Green */
-    --blog-accent-darker: #00aa00;
-    --blog-link-color: #87cefa; /* Light Sky Blue for links */
-    --blog-link-hover-color: #ffffff; /* White hover for links */
+    --blog-bg-color: #050505; /* Even darker background */
+    --blog-text-color: #00dd00; /* Brighter green text for body */
+    --blog-accent-color: #00ff00; /* Brightest Terminal Green for headings/accents */
+    --blog-accent-darker: #008800; /* Darker green */
+    --blog-link-color: #39ff14; /* Slightly different green for links */
+    --blog-link-hover-color: #050505; /* Black hover for links */
+    --blog-link-hover-bg: #00ff00; /* Bright green bg for link hover */
     --blog-border-color: var(--blog-accent-darker); /* Darker green border */
+    --blog-meta-color: #00aa00; /* Medium green for meta */
 
     /* Use retro fonts linked in blog.html */
-    --blog-font-body: 'Courier New', Courier, monospace;
+    /* VT323 offers better readability for body than Press Start 2P */
+    --blog-font-body: 'VT323', monospace;
     --blog-font-heading: 'Press Start 2P', cursive;
 
-    /* Disable smooth scroll just for this page if desired */
+    /* Set page background */
+    background-color: var(--blog-bg-color);
+
+    /* Override default body text color */
+    color: var(--blog-text-color);
+
+    /* Optional: Disable smooth scroll just for this page */
     /* scroll-behavior: auto; */
-
-    /* Optional: Add a subtle overall scanline effect */
-    /* position: relative; */
 }
-/* Optional: Overall page scanline overlay */
-/* .blog-page::after {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: repeating-linear-gradient(
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.2) 3px,
-        rgba(0, 0, 0, 0.2) 4px
-    );
-    z-index: 10000;
-    pointer-events: none;
-    opacity: 0.5;
-} */
 
+/* --- Blinking Cursor --- */
+.blinking-cursor {
+    font-family: var(--blog-font-body); /* Match body font */
+    font-size: 1.2em; /* Slightly larger */
+    color: var(--blog-accent-color);
+    animation: blink 1s step-end infinite;
+    display: inline-block; /* Allow animation */
+    margin-left: 3px; /* Space from text */
+    position: relative;
+    top: 0.1em; /* Align baseline better */
+}
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
 
 /* --- Basic element overrides for blog page --- */
 .blog-page h1,
@@ -1035,8 +985,9 @@ img, svg, video {
 .blog-page h4 {
     font-family: var(--blog-font-heading);
     color: var(--blog-accent-color); /* Green headings */
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.7); /* Simple shadow */
+    text-shadow: 0 0 5px var(--blog-accent-color), 2px 2px 0px rgba(0,0,0,0.7); /* Glow + Simple shadow */
     line-height: 1.4; /* Adjust line height for pixel font */
+    margin-bottom: var(--spacing-lg); /* More space after headings */
 }
 .blog-page p,
 .blog-page li,
@@ -1044,18 +995,23 @@ img, svg, video {
 .blog-page blockquote {
     font-family: var(--blog-font-body);
     color: var(--blog-text-color);
-    line-height: 1.7; /* Adjust line height for monospace */
+    line-height: 1.8; /* Adjust line height for VT323 */
+    font-size: 1.1rem; /* Slightly larger mono font */
+    max-width: none; /* Remove readability width limit */
 }
 
 /* Keep Header functional, maybe slightly themed */
 .blog-page .site-header {
-   background-color: rgba(10, 10, 10, 0.9); /* Darker header bg */
-   border-bottom-color: var(--blog-border-color);
+   background-color: rgba(0, 10, 0, 0.85); /* Dark Green transparent header bg */
+   border-bottom: 1px solid var(--blog-border-color);
    box-shadow: none; /* Remove modern shadow */
+   backdrop-filter: blur(5px); /* Less blur */
 }
 .blog-page .site-header .logo a,
 .blog-page .site-header .main-nav a,
 .blog-page .site-header .social-links-header a {
+    font-family: var(--blog-font-body); /* Use retro font in header too */
+    font-size: 1rem;
     color: var(--blog-text-color);
     text-shadow: none;
 }
@@ -1063,64 +1019,80 @@ img, svg, video {
 .blog-page .site-header .main-nav a:focus,
 .blog-page .site-header .main-nav a.active {
     color: var(--blog-accent-color); /* Green for active/hover */
+    background-color: var(--blog-accent-darker); /* Dark green bg */
 }
 .blog-page .site-header .main-nav a::after {
-    background-color: var(--blog-accent-color); /* Green underline */
+    /* Hide modern underline */
+    display: none;
 }
 .blog-page .site-header .social-links-header a:hover {
      color: var(--blog-accent-color);
      transform: none; /* Disable modern scale effect */
 }
+/* Keep datetime widget somewhat standard but green */
+.blog-page .site-header .datetime-widget {
+    font-family: var(--blog-font-body);
+    color: var(--blog-meta-color);
+}
 
 /* --- Blog Hero Override --- */
 .blog-page .blog-hero {
-    background-color: #1a1a1d; /* Slightly lighter dark bg */
-    border-bottom: 4px double var(--blog-border-color); /* Double border */
-    padding: var(--spacing-lg) 0;
-    margin-bottom: var(--spacing-xl);
+    background-color: transparent; /* Let page background show */
+    border-bottom: 2px dashed var(--blog-border-color); /* Dashed border */
+    padding: var(--spacing-xl) 0;
+    margin-bottom: var(--spacing-xxl);
+    text-align: center;
 }
 .blog-page .blog-hero h1 {
-    font-size: clamp(1.8rem, 5vw, 2.8rem); /* Adjust size */
+    font-size: clamp(1.5rem, 5vw, 2.5rem); /* Adjust pixel font size */
+    margin-bottom: var(--spacing-sm);
 }
 .blog-page .blog-hero .blog-subtitle {
+    font-family: var(--blog-font-body);
     font-size: 1rem;
-    color: #aaa; /* Dimmer subtitle */
+    color: var(--blog-meta-color); /* Dimmer subtitle */
 }
 
-/* --- Post Container --- */
+/* --- Post Container - *** ADDED CENTERING *** --- */
 .blog-page .blog-posts-container {
-    max-width: 760px; /* Slightly narrower for retro feel */
+    max-width: 800px; /* Max width for content */
+    margin: 0 auto var(--spacing-xxl) auto; /* Center container */
+    padding: 0 var(--spacing-md); /* Padding on smaller screens */
 }
 
 /* --- Individual Blog Post Override --- */
 .blog-page .blog-post {
-    background-color: var(--blog-bg-color); /* Dark background */
-    border: 2px solid var(--blog-border-color);
-    box-shadow: 6px 6px 0px 0px var(--blog-border-color); /* Blocky green shadow */
+    background-color: transparent; /* Let page bg show */
+    border: 1px solid var(--blog-border-color);
+    box-shadow: 5px 5px 0px 0px var(--blog-border-color); /* Blocky green shadow */
     border-radius: 0; /* Sharp corners */
     margin-bottom: var(--spacing-xxl);
     transition: none; /* Remove transitions */
-    padding: var(--spacing-md); /* Add internal padding */
+    padding: var(--spacing-lg); /* Add internal padding */
 }
 .blog-page .blog-post:hover {
-     /* No fancy hover */
-     box-shadow: 6px 6px 0px 0px var(--blog-border-color); /* Keep shadow static */
+     box-shadow: 5px 5px 0px 0px var(--blog-border-color); /* Keep shadow static */
+     /* Add subtle border brightness on hover */
+     border-color: var(--blog-accent-color);
 }
 
 /* --- Post Feature Image Override --- */
 .blog-page .post-feature-image {
-    margin: calc(-1 * var(--spacing-md)); /* Pull image to edge */
+    margin: calc(-1 * var(--spacing-lg)); /* Pull image to edge */
     margin-bottom: var(--spacing-lg); /* Space below image */
-    border: 2px solid var(--blog-border-color);
+    border-bottom: 1px solid var(--blog-border-color); /* Border below */
     position: relative; /* Needed for overlay */
-    background-color: #222; /* BG in case image fails */
+    background-color: #111; /* BG in case image fails */
+    overflow: hidden; /* Contain overlay */
 }
 .blog-page .post-feature-image img {
     border: none; /* Remove previous border */
     display: block;
     width: 100%;
-    filter: grayscale(30%) contrast(110%) brightness(95%); /* Desaturate slightly, adjust contrast */
-    image-rendering: pixelated; /* Force pixelated look if browser supports */
+    filter: grayscale(50%) contrast(120%) brightness(90%) sepia(20%); /* Adjust filter */
+    image-rendering: pixelated; /* Force pixelated look */
+    mix-blend-mode: screen; /* Blend image with background */
+    opacity: 0.8;
 }
 /* Optional Scanline Overlay for Image */
 .blog-page .image-scanline-overlay {
@@ -1128,107 +1100,147 @@ img, svg, video {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: repeating-linear-gradient(
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.4) 3px,
-        rgba(0, 0, 0, 0.4) 4px
+        rgba(0, 255, 0, 0),
+        rgba(0, 255, 0, 0) 2px,
+        rgba(0, 0, 0, 0.5) 3px,
+        rgba(0, 0, 0, 0.5) 4px
     );
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.7;
     z-index: 1;
 }
 
 /* --- Post Header Override --- */
 .blog-page .blog-post .post-header {
-    padding: 0 0 var(--spacing-sm) 0; /* Reset padding, add bottom space */
+    padding: 0 0 var(--spacing-md) 0; /* Reset padding, add bottom space */
     border-bottom: 1px dashed var(--blog-border-color); /* Separator */
     margin-bottom: var(--spacing-lg);
 }
 .blog-page .blog-post .post-title {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    margin-bottom: var(--spacing-xs);
+    font-size: clamp(1.1rem, 3vw, 1.6rem); /* Adjust pixel size */
+    margin-bottom: var(--spacing-sm);
 }
 .blog-page .blog-post .post-title a {
     color: var(--blog-accent-color);
     text-decoration: none;
 }
 .blog-page .blog-post .post-title a:hover {
-    background-color: var(--blog-accent-color); /* Highlight hover */
-    color: var(--blog-bg-color);
+    background-color: var(--blog-accent-darker); /* Darker green background */
+    color: var(--blog-accent-color); /* Keep text bright */
+    text-shadow: 0 0 8px var(--blog-accent-color); /* Add glow */
 }
 
 .blog-page .blog-post .post-meta {
     font-family: var(--blog-font-body);
-    font-size: 0.8rem;
-    color: #999; /* Dim meta text */
+    font-size: 0.9rem; /* Adjust size */
+    color: var(--blog-meta-color); /* Dim meta text */
     text-transform: none; /* No uppercase */
-    letter-spacing: 0;
+    letter-spacing: 0.5px; /* Slight spacing */
 }
 .blog-page .blog-post .post-meta time {
     font-weight: normal;
-    color: #bbb;
+    color: var(--blog-text-color); /* Brighter time */
+}
+.blog-page .blog-post .post-meta .meta-label {
+    /* Style the [Label]: part */
+    color: #008800; /* Darker green */
+}
+.blog-page .blog-post .post-meta .meta-separator {
+    color: var(--blog-border-color);
+    margin: 0 0.5em;
 }
 .blog-page .blog-post .post-meta .post-category {
     font-weight: normal;
     color: var(--blog-accent-color); /* Category green */
     display: inline-block; /* Allow styling like padding */
-    padding: 1px 4px;
-    border: 1px solid var(--blog-accent-darker);
+    padding: 0 5px;
+    /* Remove border for cleaner look */
+    /* border: 1px solid var(--blog-accent-darker); */
     margin-left: 5px;
+    background-color: #003300; /* Very dark green bg */
 }
 
 /* --- Post Content Override --- */
 .blog-page .blog-post .post-content {
     padding: 0; /* Reset padding */
-    font-size: 0.95rem; /* Adjust monospace size */
-    line-height: 1.6;
+    font-size: 1.1rem; /* Adjust monospace size */
+    line-height: 1.7;
 }
 .blog-page .blog-post .post-content p {
     margin-bottom: var(--spacing-md);
 }
 .blog-page .blog-post .post-content ul,
 .blog-page .blog-post .post-content ol {
-    margin-left: 0;
-    margin-bottom: var(--spacing-md);
-    padding-left: var(--spacing-lg); /* Indent list */
-    list-style-type: square; /* Square bullets */
+    margin: 0 0 var(--spacing-md) 0; /* Remove default margin */
+    padding-left: var(--spacing-xl); /* Indent list more */
+    list-style-type: none; /* Remove default */
 }
 .blog-page .blog-post .post-content li {
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
 }
+.blog-page .blog-post .post-content li::before {
+    content: ">"; /* Use '>' as bullet */
+    font-family: var(--blog-font-body);
+    color: var(--blog-accent-color);
+    position: absolute;
+    left: -1.5em; /* Position bullet */
+    top: 0;
+}
+
 .blog-page .blog-post .post-content blockquote {
-    border-left: 4px solid var(--blog-border-color);
+    border: 1px dashed var(--blog-border-color);
     margin: var(--spacing-lg) 0;
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-md);
     font-style: normal; /* No italics */
-    color: #bbb;
-    background-color: #1f1f1f; /* Slightly different dark bg */
+    color: var(--blog-text-color); /* Green quote text */
+    background-color: #001a00; /* Darker green bg */
     border-radius: 0;
+    position: relative;
 }
+.blog-page .blog-post .post-content blockquote::before {
+    content: "//"; /* Quote indicator */
+    font-family: var(--blog-font-body);
+    color: var(--blog-meta-color);
+    position: absolute;
+    left: var(--spacing-sm);
+    top: var(--spacing-sm);
+    font-size: 0.9em;
+}
+.blog-page .blog-post .post-content blockquote p:first-of-type {
+    margin-top: var(--spacing-md); /* Space after indicator */
+}
+
 .blog-page .blog-post .post-content a:not(.cta-button) {
-    color: var(--blog-link-color); /* Blue links */
-    text-decoration: underline;
-    text-decoration-style: dotted; /* Dotted underline */
-    text-underline-offset: 2px;
-    background: none; /* Remove inherited button styles */
-    padding: 0; border: none; border-radius: 0;
-    text-transform: none; letter-spacing: 0;
+    color: var(--blog-link-color); /* Green links */
+    text-decoration: none; /* No underline */
+    background-color: #003300; /* Dark green bg */
+    padding: 0 2px;
+    border: 1px solid var(--blog-border-color);
     transition: none; /* No transition */
+    /* Remove inherited button styles */
+    border-radius: 0; text-transform: none; letter-spacing: 0;
 }
 .blog-page .blog-post .post-content a:not(.cta-button):hover {
-    color: var(--blog-link-hover-color); /* White hover */
-    background-color: var(--blog-link-color); /* Blue background */
-    text-decoration: none; /* Remove underline on hover */
+    color: var(--blog-link-hover-color); /* Black hover text */
+    background-color: var(--blog-link-hover-bg); /* Bright green bg */
+    border-color: var(--blog-link-hover-bg);
 }
 
 /* --- Footer Override (Minimal) --- */
 .blog-page .site-footer {
     background-color: #000; /* Black footer */
-    border-top: 2px solid var(--blog-border-color);
-    color: #888;
+    border-top: 1px solid var(--blog-border-color);
+    color: var(--blog-meta-color); /* Use meta color */
+    font-family: var(--blog-font-body);
 }
+.blog-page .footer-copyright {
+     font-size: 0.9rem;
+}
+.blog-page .footer-label,
 .blog-page .footer-social a {
-    color: #888;
+    color: var(--blog-meta-color);
+    font-family: var(--blog-font-body);
 }
 .blog-page .footer-social a:hover {
     color: var(--blog-accent-color); /* Green hover */
@@ -1238,13 +1250,13 @@ img, svg, video {
 /* --- Back to Top Override --- */
 .blog-page .back-to-top {
     background-color: var(--blog-accent-darker);
-    color: var(--blog-bg-color);
+    color: #000; /* Black icon */
     border-radius: 0; /* Square button */
     border: 1px solid var(--blog-accent-color);
-    width: 40px; height: 40px; font-size: 1.2rem;
+    width: 35px; height: 35px; font-size: 1rem;
     box-shadow: none;
-    opacity: 0.8; /* Make it slightly visible always? */
-    visibility: visible; /* Always visible */
+    opacity: 0.8; /* Always slightly visible */
+    visibility: visible;
     transform: none; /* No slide */
     transition: none;
 }
@@ -1257,19 +1269,38 @@ img, svg, video {
     background-color: var(--blog-accent-color);
     color: #000;
     transform: none;
+    border-color: var(--blog-accent-color);
 }
 
 /* --- Scrollbar Styling (Optional, Webkit browsers) --- */
 .blog-page ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 .blog-page ::-webkit-scrollbar-track {
-  background: #1a1a1d;
+  background: #050505;
+  border-left: 1px solid var(--blog-border-color);
 }
 .blog-page ::-webkit-scrollbar-thumb {
   background: var(--blog-accent-darker);
-  border: 1px solid var(--blog-accent-color);
+  border: 1px solid var(--blog-border-color);
 }
 .blog-page ::-webkit-scrollbar-thumb:hover {
   background: var(--blog-accent-color);
+  border-color: var(--blog-accent-color);
 }
+
+/* Optional: Overall page scanline overlay */
+/* .blog-page::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 2px,
+        rgba(0, 40, 0, 0.15) 3px,
+        rgba(0, 40, 0, 0.15) 4px
+    );
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0.6;
+} */
