@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Nick Hannon - Musings & Tangents</title> <!-- Blog specific title -->
+
+    <!-- Fonts (Including Retro Font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (Same as index.html) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Main Stylesheet (Same as index.html) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="blog-page"> <!-- Added class to body for potential specific targeting -->
+
+    <!-- === HEADER (Copy from index.html) === -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <!-- Link back to the main page -->
+                <a href="index.html">Nick Hannon</a>
+            </div>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <!-- Links - Note the href changes and 'active' class on Blog -->
+                <a href="index.html#tech">Tech</a>
+                <a href="index.html#creation">Creation</a>
+                <a href="index.html#music">Music</a>
+                <a href="index.html#youtube">YouTube</a>
+                <a href="index.html#gaming">Gaming</a>
+                <a href="blog.html" class="active">Blog</a> <!-- Added 'active' class manually -->
+            </nav>
+            <div class="header-utils">
+                <!-- Music button *not* included here -->
+                <div id="datetime" class="datetime-widget">
+                    <span id="date"></span> | <span id="time"></span>
+                </div>
+                <div class="social-links-header" aria-label="Social Media Links">
+                     <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                     <a href="#" aria-label="Discord" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
+                     <a href="#" aria-label="SoundCloud" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- === MAIN BLOG CONTENT === -->
+    <main class="blog-main">
+
+        <!-- Blog Hero Section -->
+        <section class="blog-hero" aria-labelledby="blog-page-title">
+            <div class="section-container">
+                <h1 id="blog-page-title">Musings & Tangents</h1>
+                <p class="blog-subtitle">Tech insights, project updates, and occasional departures from the script.</p>
+            </div>
+        </section>
+
+        <!-- Blog Posts Container -->
+        <div class="blog-posts-container">
+
+            <!-- === HOW TO ADD A NEW POST === -->
+            <!-- 1. Copy the entire <article>...</article> block below. -->
+            <!-- 2. Paste it *ABOVE* the existing <article> block(s). -->
+            <!-- 3. Update the content: Title, Date, Body text. -->
+            <!-- 4. Update the src="..." for the feature image (or remove the <figure> block if no image). -->
+            <!-- 5. Save the file. -->
+
+            <!-- === EXAMPLE POST 1 (Newest Post - Add new ones above this) === -->
+            <article class="blog-post reveal-on-scroll">
+                <figure class="post-feature-image">
+                    <!-- Replace with your image path -->
+                    <img src="images/blog-placeholder-1.jpg" alt="Descriptive alt text for image 1">
+                    <!-- Optional: Add a retro frame/overlay via CSS -->
+                    <div class="image-scanline-overlay"></div>
+                </figure>
+                <header class="post-header">
+                    <h2 class="post-title"><a href="#">My Deep Dive into Retro Emulation Setup</a></h2>
+                    <p class="post-meta">
+                        Published on <time datetime="2023-10-27">October 27, 2023</time>
+                        <!-- Optional: Add category or tags here -->
+                        <!-- | <span class="post-category">// Tech</span> -->
+                    </p>
+                </header>
+                <div class="post-content">
+                    <p>Recently, I decided to revisit some classic gaming experiences and set up a dedicated retro emulation station. It turned out to be more involved than I initially thought, involving Raspberry Pi tweaking, frontend configuration with EmulationStation, and navigating the sometimes murky waters of ROM management...</p>
+                    <p>Here's a breakdown of the hardware I used, the software choices I made, and some unexpected hurdles I encountered along the way. Plus, a few thoughts on the preservation of digital history (see, told you I go off topic!).</p>
+                    <ul>
+                        <li>Raspberry Pi 4 Model B</li>
+                        <li>RetroPie / EmulationStation</li>
+                        <li>Choosing the right controllers</li>
+                    </ul>
+                    <p>Let me know if you've done similar projects!</p>
+                </div>
+            </article>
+            <!-- === END EXAMPLE POST 1 === -->
+
+
+            <!-- === EXAMPLE POST 2 === -->
+            <article class="blog-post reveal-on-scroll">
+                <!-- No feature image for this post example -->
+                <header class="post-header">
+                    <h2 class="post-title"><a href="#">Thoughts on the Latest Web Framework Buzz</a></h2>
+                     <p class="post-meta">
+                        Published on <time datetime="2023-10-15">October 15, 2023</time>
+                    </p>
+                </header>
+                <div class="post-content">
+                    <p>Every few months, it seems like a new JavaScript framework or library takes the web development world by storm. While innovation is great, the constant churn can be exhausting. Is the latest "shiny object" really that much better, or are we just chasing novelty?</p>
+                    <p>This isn't a technical comparison, more of a rambling reflection on developer productivity, learning curves, and the importance of sticking with tools that actually solve problems effectively, even if they aren't the absolute newest thing on the block.</p>
+                    <blockquote>
+                       "Focus on the fundamentals, master your tools, and choose technologies that fit the problem, not just the hype cycle." - Me, just now.
+                    </blockquote>
+                    <p>// End transmission.</p>
+                </div>
+            </article>
+            <!-- === END EXAMPLE POST 2 === -->
+
+            <!-- Add more <article> blocks here for older posts -->
+
+        </div> <!-- /.blog-posts-container -->
+
+    </main>
+
+    <!-- === FOOTER (Copy from index.html) === -->
+    <footer class="site-footer">
+       <div class="footer-container">
+            <div class="footer-copyright">
+                © <span id="year"></span> Nick Hannon. All Rights Reserved.
+            </div>
+            <div class="footer-social">
+                <span class="footer-label">Connect:</span>
+                 <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                 <a href="#" aria-label="Discord" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
+                 <a href="#" aria-label="SoundCloud" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button (Copy from index.html) -->
+    <a href="#" class="back-to-top" aria-label="Back to top" title="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- === SCRIPTS (Same as index.html) === -->
+    <script src="script.js"></script>
+
+</body>
+</html>
