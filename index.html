@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nick Hannon | Digital Atelier & Portfolio Hub</title>
 
-    <!-- Fonts: Keeping Playfair for headings, adding a versatile sans-serif like Inter -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Main Stylesheet -->
@@ -30,6 +30,7 @@
                 <a href="#music">Music</a>
                 <a href="#youtube">YouTube</a>
                 <a href="#gaming">Gaming</a>
+                <a href="#blog">Blog</a> <!-- Added Blog Link -->
             </nav>
             <div class="header-utils">
                 <!-- Music Control Button -->
@@ -45,9 +46,7 @@
                      <a href="#" aria-label="Discord" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
                      <a href="#" aria-label="SoundCloud" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
                      <!-- Add other relevant links like LinkedIn, Twitter etc. -->
-                     <!-- <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a> -->
                 </div>
-                <!-- Add mobile menu toggle button here later if needed -->
             </div>
         </div>
     </header>
@@ -56,7 +55,6 @@
 
         <!-- === Hero Section === -->
         <section class="hero" aria-labelledby="hero-heading">
-            <!-- Consider a subtle animated background or high-res image -->
             <div class="hero-background-element"></div>
             <div class="hero-overlay"></div>
             <div class="hero-content">
@@ -72,43 +70,40 @@
         <!-- Container for the different interest sections -->
         <div class="interests-wrapper">
 
-            <!-- === Tech / SysFX Section (Layout Style 1: Split Screen) === -->
+            <!-- === Tech / SysFX Section === -->
             <section class="interest-section tech-section reveal-on-scroll" id="tech" aria-labelledby="tech-heading">
                 <div class="section-container split-layout">
                     <div class="split-content text-content">
                         <div class="icon-badge tech-icon-badge"><i class="fas fa-server"></i></div>
                         <h2 id="tech-heading">Technology & Infrastructure</h2>
-                        <span class="section-subtitle">sysfx.net</span>
+                        <span class="section-subtitle">SysFX.net</span>
                         <p>Designing, deploying, and maintaining robust digital solutions. Specializing in system administration, network configuration, and expert computer repair services.</p>
                         <a href="https://sysfx.net" target="_blank" rel="noopener noreferrer" class="cta-button btn-primary">
                             Visit SysFX.net <i class="fas fa-external-link-alt icon-right"></i>
                         </a>
                     </div>
                     <div class="split-visual tech-visual">
-                        <!-- Replace with your actual image path -->
                         <img src="images/placeholder-tech.jpg" alt="Abstract technology visualization">
                     </div>
                 </div>
             </section>
 
-            <!-- === Content Creation Section (Layout Style 2: Full Width Background Focus) === -->
+            <!-- === Content Creation Section === -->
             <section class="interest-section creation-section reveal-on-scroll" id="creation" aria-labelledby="creation-heading">
-                <!-- This section uses a background image -->
-                <!-- Replace with your actual image path -->
                 <div class="section-background creation-bg" style="background-image: url('images/placeholder-creation.jpg');"></div>
-                <div class="section-overlay dark-overlay"></div><!-- Overlay for text contrast -->
+                <div class="section-overlay dark-overlay"></div>
                 <div class="section-container centered-content">
                     <div class="icon-badge creation-icon-badge"><i class="fas fa-camera-retro"></i></div>
                     <h2 id="creation-heading">Content Creation</h2>
                      <span class="section-subtitle">Photography & Videography</span>
                     <p>Capturing the world from unique perspectives. Exploring visual storytelling through still photography and dynamic drone videography.</p>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="cta-button btn-secondary"> <!-- Replace # -->
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="cta-button btn-secondary"> <!-- Replace # with portfolio link -->
                         View Portfolio <i class="fas fa-images icon-right"></i>
                     </a>
                 </div>
             </section>
 
-            <!-- === Music / Soundcloud Section (Layout Style 3: Focused Content Card) === -->
+            <!-- === Music / Soundcloud Section === -->
             <section class="interest-section music-section reveal-on-scroll" id="music" aria-labelledby="music-heading">
                  <div class="section-container content-card-layout">
                      <div class="content-card music-card">
@@ -116,20 +111,18 @@
                         <h2 id="music-heading">Sonic Explorations</h2>
                         <span class="section-subtitle">Music & Sound Design</span>
                         <p>Crafting auditory experiences, from ambient soundscapes to rhythmic compositions. Sharing experiments and tracks on SoundCloud.</p>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="cta-button btn-ghost-light"> <!-- Replace # -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="cta-button btn-ghost-light"> <!-- Replace # with Soundcloud link -->
                             Listen on SoundCloud <i class="fab fa-soundcloud icon-right"></i>
                         </a>
                      </div>
-                     <!-- Optional subtle background pattern for the section -->
                      <div class="section-background music-bg-pattern"></div>
                 </div>
             </section>
 
-            <!-- === YouTube Section (Layout Style 1: Split Screen - Reversed) === -->
+            <!-- === YouTube Section === -->
             <section class="interest-section youtube-section reveal-on-scroll" id="youtube" aria-labelledby="youtube-heading">
                 <div class="section-container split-layout reversed">
                      <div class="split-visual youtube-visual">
-                        <!-- Replace with your actual image path -->
                          <img src="images/placeholder-youtube.jpg" alt="YouTube channel visual representation">
                      </div>
                     <div class="split-content text-content">
@@ -137,33 +130,46 @@
                         <h2 id="youtube-heading">Video Content</h2>
                         <span class="section-subtitle">My YouTube Channel</span>
                         <p>Sharing insights, tutorials, gameplay, or creative projects through video. Engaging with the community and exploring the platform.</p>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="cta-button btn-primary btn-youtube"> <!-- Replace # -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="cta-button btn-primary btn-youtube"> <!-- Replace # with YouTube channel link -->
                             Visit YouTube Channel <i class="fab fa-youtube icon-right"></i>
                         </a>
                     </div>
                 </div>
             </section>
 
-            <!-- === Termina MC Section (Layout Style 2: Full Width Background Focus - Gaming Theme) === -->
+            <!-- === Termina MC Section === -->
             <section class="interest-section termina-section reveal-on-scroll" id="gaming" aria-labelledby="gaming-heading">
-                 <!-- Replace with your actual image path -->
                  <div class="section-background termina-bg" style="background-image: url('images/placeholder-termina.jpg');"></div>
                  <div class="section-overlay gentle-overlay"></div>
                 <div class="section-container centered-content">
                     <div class="icon-badge termina-icon-badge"><i class="fas fa-cubes"></i></div>
                     <h2 id="gaming-heading">Termina Minecraft</h2>
                     <span class="section-subtitle">TerminaMC.com</span>
-                    <p>Home to Termina: a welcoming crossplay (Java & Bedrock) SMP community focused on building, collaboration, and exciting PvP/war events.</p>
+                    <p>Home to the Termina Minecraft server: a welcoming crossplay (Java & Bedrock) SMP community focused on building, collaboration, and exciting PvP/war events.</p>
                     <a href="https://TerminaMC.com" target="_blank" rel="noopener noreferrer" class="cta-button btn-secondary btn-termina">
                         Join TerminaMC <i class="fas fa-gamepad icon-right"></i>
                     </a>
-                     <!-- Maybe add server status widget here later? -->
+                </div>
+            </section>
+
+            <!-- === Blog Section (Layout Style 3: Focused Content Card) === -->
+            <section class="interest-section blog-section reveal-on-scroll" id="blog" aria-labelledby="blog-heading">
+                 <div class="section-container content-card-layout">
+                     <div class="content-card blog-card"> <!-- Added specific blog-card class -->
+                         <div class="card-icon blog-card-icon"><i class="fas fa-feather-alt"></i></div> <!-- Changed icon -->
+                        <h2 id="blog-heading">Musings & Tangents</h2> <!-- Changed heading -->
+                        <span class="section-subtitle">Personal Blog</span> <!-- Changed subtitle -->
+                        <p>Thoughts on technology, recent discoveries, project updates, and the occasional deep-dive into topics only tangentially related. You've been warned.</p> <!-- Updated text with humor -->
+                        <a href="blog.html" class="cta-button btn-ghost-dark"> <!-- Link to blog page (e.g., blog.html), used btn-ghost-dark assuming light card -->
+                            Read The Blog <i class="fas fa-arrow-right icon-right"></i>
+                        </a>
+                     </div>
+                     <!-- Optional background for the section -->
+                     <div class="section-background blog-bg-pattern"></div>
                 </div>
             </section>
 
             <!-- === ADD MORE INTEREST SECTIONS HERE === -->
-            <!-- Choose a layout style by copying one of the above sections -->
-            <!-- Update IDs, classes (e.g., .blog-section), content, icons, buttons, and background/visual elements -->
 
         </div> <!-- /.interests-wrapper -->
 
@@ -181,33 +187,16 @@
                  <a href="#" aria-label="SoundCloud" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
                  <!-- Add other relevant links -->
             </div>
-            <!-- Optional: Link to a privacy policy or contact page -->
         </div>
     </footer>
 
     <!-- Back to top button -->
     <a href="#" class="back-to-top" aria-label="Back to top" title="Back to top"><i class="fas fa-arrow-up"></i></a>
 
-    <!-- === Background Audio Element === -->
-    <!-- The 'src' attribute will be set by JavaScript -->
-    <!-- Add 'loop' attribute if you want the music to loop automatically -->
-    <audio id="background-audio" loop>
-        <!-- Provide fallback content for browsers that don't support the audio element -->
+    <!-- Background Audio Element -->
+    <audio id="background-audio"> <!-- Removed loop attribute, JS handles cycling -->
         Your browser does not support the audio element.
-        <!--
-            Define potential audio sources here or (better) in the JavaScript file.
-            Example structure for JS:
-            const musicTracks = [
-                { name: "PS2 Menu", url: "URL_TO_PS2_MUSIC" },
-                { name: "DS Menu", url: "URL_TO_DS_MUSIC" },
-                { name: "Halo 3 Menu", url: "URL_TO_HALO3_MUSIC" },
-                { name: "Assassin's Creed Ambience", url: "URL_TO_AC_MUSIC" }
-            ];
-            Replace "URL_TO_..." with actual, valid URLs you have the rights to use or link to.
-            Be mindful of copyright when sourcing music files.
-        -->
     </audio>
-
 
     <script src="script.js"></script>
 </body>
