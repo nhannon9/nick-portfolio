@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Hannon | Digital Atelier & Portfolio</title>
+    <!-- More refined font choices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="#">Nick Hannon</a> <!-- Links to top of page -->
+            </div>
+            <nav class="main-nav">
+                <!-- Optional: Add internal links later if page gets long -->
+                <!-- <a href="#tech">Tech</a> -->
+                <!-- <a href="#photo">Photography</a> -->
+                <!-- <a href="#music">Music</a> -->
+            </nav>
+            <div class="header-utils">
+                <div id="datetime" class="datetime-widget">
+                    <span id="date"></span> | <span id="time"></span>
+                </div>
+                <!-- Optional: Add social links here -->
+                <div class="social-links">
+                     <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                     <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                     <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-main">
+
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content-main">
+                <h1>Digital Atelier</h1>
+                <p class="subtitle">An evolving collection of projects, passions, and explorations by Nick Hannon.</p>
+                <!-- Optional: Scroll down indicator -->
+                <a href="#interests" class="scroll-down" aria-label="Scroll down"><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </section>
+
+        <div id="interests" class="interests-container"> <!-- Anchor point for scroll down -->
+
+            <!-- === Tech / SysFX Section === -->
+            <section class="interest-section tech-section" id="tech">
+                <div class="section-content">
+                    <div class="section-icon"><i class="fas fa-terminal"></i></div>
+                    <h2>Technology & Systems</h2>
+                    <p>Building, fixing, and optimizing digital infrastructure. From hardware repair to network solutions at SysFX.</p>
+                    <a href="https://sysfx.net" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        Visit SysFX.net <i class="fas fa-arrow-right-long icon-right"></i>
+                    </a>
+                </div>
+                <div class="section-bg tech-bg"></div> <!-- Background Element -->
+            </section>
+
+            <!-- === Photography Section === -->
+            <section class="interest-section photo-section" id="photo">
+                 <div class="section-content">
+                    <div class="section-icon"><i class="fas fa-camera"></i></div>
+                    <h2>Visual Storytelling</h2>
+                    <p>Exploring the world through a camera lens, capturing light, composition, and fleeting moments.</p>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary"> <!-- Replace # -->
+                        View Photography Portfolio <i class="fas fa-arrow-right-long icon-right"></i>
+                    </a>
+                </div>
+                 <div class="section-bg photo-bg"></div>
+            </section>
+
+            <!-- === Music / Soundcloud Section === -->
+            <section class="interest-section music-section" id="music">
+                 <div class="section-content">
+                     <div class="section-icon"><i class="fas fa-sliders-h"></i></div>
+                    <h2>Sound & Composition</h2>
+                    <p>Crafting soundscapes, melodies, and rhythms. Sharing musical experiments and projects on SoundCloud.</p>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary"> <!-- Replace # -->
+                        Listen on SoundCloud <i class="fab fa-soundcloud icon-right"></i>
+                    </a>
+                </div>
+                 <div class="section-bg music-bg"></div>
+            </section>
+
+            <!-- === ADD MORE INTEREST SECTIONS HERE === -->
+            <!-- Copy an entire <section class="interest-section...">...</section> block -->
+            <!-- Update the class (e.g., "writing-section"), id, icon, text, button link/text, and background class (.writing-bg) -->
+            <!-- Example:
+            <section class="interest-section writing-section" id="writing">
+                <div class="section-content">
+                    <div class="section-icon"><i class="fas fa-feather-alt"></i></div>
+                    <h2>Thoughts & Writing</h2>
+                    <p>Sharing ideas, technical articles, and creative writing pieces.</p>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        Read Articles <i class="fas fa-arrow-right-long icon-right"></i>
+                    </a>
+                </div>
+                <div class="section-bg writing-bg"></div>
+            </section>
+            -->
+
+        </div> <!-- /.interests-container -->
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year"></span> Nick Hannon. Crafted with code.</p>
+        <!-- Maybe repeat minimal social links or contact info -->
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
