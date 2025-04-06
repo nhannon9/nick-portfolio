@@ -934,6 +934,10 @@ img, svg, video {
    12. RETRO BLOG OVERRIDE STYLES ("Last Page of the Internet" Theme)
    ========================================================================== */
 
+.blog-main {
+    padding-top: var(--header-height); /* Use the variable for header height */
+}
+
 /* --- Apply theme variables scoped to the blog page --- */
 .blog-page {
     /* Define retro colors and fonts */
