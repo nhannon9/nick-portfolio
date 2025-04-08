@@ -766,6 +766,37 @@ img, svg, video {
 }
 /* .termina-bg { background-image: url('images/minecraft-landscape.jpg'); } */
 
+/* --- KoozieSports Section (NEW) --- */
+.kooziesports-section {
+    --section-accent-color: var(--color-warning); /* Using warning yellow/orange */
+    --section-icon-bg: linear-gradient(to bottom right, #ffae42, #ff8c00); /* Orange gradient */
+    --section-icon-color: var(--color-text-dark); /* Dark text on orange */
+    background-color: var(--color-bg-medium); /* Light gray background */
+}
+
+.kooziesports-section .koozie-visual .logo-placeholder {
+    border: 3px dashed var(--color-text-medium);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    text-align: center;
+    color: var(--color-text-medium);
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: var(--border-radius-lg); /* Match image radius */
+    min-height: 200px; /* Give it some noticeable height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.03); /* Very subtle background */
+    box-shadow: none; /* Override default visual shadow */
+}
+.kooziesports-section .koozie-visual .logo-placeholder span {
+    display: block;
+}
+/* Use the secondary button style, which will pick up the section's accent color */
+.kooziesports-section .cta-button.btn-secondary {
+    /* No override needed, inherits default secondary button behavior */
+    /* Hover state will use filter: brightness(0.9) */
+}
 
 /* ==========================================================================
    8. Footer
