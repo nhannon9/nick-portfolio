@@ -768,9 +768,9 @@ img, svg, video {
 
 /* --- KoozieSports Section (NEW) --- */
 .kooziesports-section {
-    --section-accent-color: var(--color-warning); /* Using warning yellow/orange */
-    --section-icon-bg: linear-gradient(to bottom right, #ffae42, #ff8c00); /* Orange gradient */
-    --section-icon-color: var(--color-text-dark); /* Dark text on orange */
+    --section-accent-color: #2575fc;
+    --section-icon-bg: linear-gradient(to bottom right, #e63946, #2575fc);
+    --section-icon-color: var(--color-text-light);
     background-color: var(--color-bg-medium); /* Light gray background */
 }
 
