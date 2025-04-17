@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'playlist', id: 'PLrbFUdbfepXULZMri62heffZj_QoXYkeT', name: "O.G.C. - Da Storm" },
         { type: 'playlist', id: 'PLrbFUdbfepXW6-xY2YMKOaGpyJIW3V0Hl', name: "Smif-N-Wessun - Dah Shinin'" },
         { type: 'playlist', id: 'PLrbFUdbfepXU-5WU0HeCe_d56loyH9OdP', name: "Heltah Skeltah - Nocturnal" },
+        { type: 'playlist', id: 'PL2915EAE02B0C2B64', name: "Classic Rap" },
+        { type: 'playlist', id: 'PLBTG-Sh12vzumoFYiZ04UvNo8JnCnGAZu', name: "OGDonNinja" },
         // Videos
         { type: 'video', id: 'ImSoA_fAVL4', name: "Nas - Memory Lane (Sittin' in da Park)" },
         { type: 'video', id: '8FGuJdxldkI', name: "MF DOOM X MR. FANTASTIK - UNRELEASED TRACK (PROD. MADLIB)" },
@@ -27,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'video', id: 'xUDNMmbYtkw', name: "O.G.C. - No Fear" },
         { type: 'video', id: 'm_bOjWb0KeI', name: "Smif-N-Wessun: NPR Music Tiny Desk Concert" },
         { type: 'video', id: 'ubWL8VAPoYw', name: "Snoop Dogg - Riders on the Storm (feat. The Doors)" },
+        { type: 'video', id: 'LpsKdWOpc3A', name: "COLASO - MY THOUGHTS ARE EXTRAORDINARY" },
+        
     ];
 
     // --- Element Selectors ---
