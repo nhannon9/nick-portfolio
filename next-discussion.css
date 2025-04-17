@@ -350,6 +350,28 @@
     transition: width 0.2s linear; /* Smooth progress update */
 }
 
+/* Styles for Video Mode (when .audio-mode is NOT present) */
+.ipod-container:not(.audio-mode) .track-info {
+    color: #f0f0f0; /* Light text color */
+    /* Keep the background gradient for contrast */
+    background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Enhance shadow */
+}
+
+.ipod-container:not(.audio-mode) .track-info p {
+    /* Ensure paragraphs inherit the light color */
+    color: #f0f0f0;
+}
+
+.ipod-container:not(.audio-mode) .progress-bar-filled {
+    background-color: #f0f0f0; /* White progress bar */
+}
+
+/* Optional: Slightly dim the progress bar background in video mode */
+.ipod-container:not(.audio-mode) .progress-bar-visual {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
 /* --- iPod Controls (Click Wheel) --- */
 .ipod-controls {
     display: flex;
