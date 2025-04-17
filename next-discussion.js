@@ -2,18 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Configuration ---
     const DILLA_SOURCES = [
         // Playlists (Add more good ones!) - Use Playlist ID from URL
-        { type: 'playlist', id: 'PLSXjN3SAKjAnu53kZKeXvws1gKyJ5fL6P' }, // Example: "J Dilla Instrumentals"
-        { type: 'playlist', id: 'PL8dPuuaLjXtP3fzW9AGqnM74aRPm5a7Cv' }, // Example: "J Dilla Beats"
+        { type: 'playlist', id: 'fabj6XusOHI&list=PLySydR2Lc6tWHLTPdBVZEA0aECGokHiZC' }, // Example: "J Dilla Instrumentals"
+        { type: 'playlist', id: 'nW4savgu9aw&list=PL5uJoXmE7hgvhWREHqbcZbjvn_L031BdU' }, // Example: "J Dilla Beats"
         // You can also add specific Video IDs for very rare/specific tracks
         // { type: 'video', id: 'VIDEO_ID_HERE' },
     ];
 
     const REAL_RAP_SOURCES = [
         // Specific Albums (as playlists if available, or curated track lists)
-        { type: 'playlist', id: 'PLJ25HAl8I0-De7VFRQD7x_x8SmXo7lJ-S', name: "Black Moon - Enta Da Stage" }, // Example Playlist ID
-        { type: 'playlist', id: 'PLb41EF0qHy_pGg2tG0sF5f9Z9l5G4jGkD', name: "OGC - Da Storm" }, // Example Playlist ID
-        { type: 'playlist', id: 'PLZo0Mh0Z4tUD7DYmBEc7H8pSjMFp_q7sK', name: "Smif-N-Wessun - Dah Shinin'" }, // Example
-        { type: 'playlist', id: 'PL1wqUOv5XAFwbB8U50z5rBGuuL-d7LgDW', name: "Heltah Skeltah - Nocturnal" }, // Example
+        { type: 'playlist', id: 'X7zN9D6EGdU&list=PLrbFUdbfepXXqaWS722iHEtKjbjib6aex', name: "Black Moon - Enta Da Stage" }, // Example Playlist ID
+        { type: 'playlist', id: 'QEuYjxnQ9IM&list=PLrbFUdbfepXULZMri62heffZj_QoXYkeT', name: "OGC - Da Storm" }, // Example Playlist ID
+        { type: 'playlist', id: 'ZRTbVFk9h6c&list=PLrbFUdbfepXW6-xY2YMKOaGpyJIW3V0Hl', name: "Smif-N-Wessun - Dah Shinin'" }, // Example
+        { type: 'playlist', id: 'PLrbFUdbfepXU-5WU0HeCe_d56loyH9OdP', name: "Heltah Skeltah - Nocturnal" }, // Example
         // Add more album playlists or specific video IDs
          { type: 'video', id: 'h2PQa_OmKdo', name: "Nas - N.Y. State of Mind" },
          { type: 'video', id: 'JxPmzBi3KIk', name: "Mobb Deep - Shook Ones, Pt. II" },
