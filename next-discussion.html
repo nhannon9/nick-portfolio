@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Next Discussion | nhannon.com</title>
+
+    <!-- Fonts (Reusing from index.html) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Using a Monospace font for potential display text -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+
+    <!-- Font Awesome (Reusing from index.html) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Music Player Stylesheet -->
+    <link rel="stylesheet" href="next-discussion.css">
+</head>
+<body class="player-page">
+
+    <!-- Re-purposed Header -->
+    <header class="site-header player-header">
+        <div class="header-container">
+            <div class="logo">
+                <!-- Link back to main portfolio -->
+                <a href="index.html">Nick Hannon</a>
+            </div>
+            <nav class="main-nav player-nav" aria-label="Player Navigation">
+                 <!-- Simple nav, maybe just title -->
+                 <span>The Next Discussion</span>
+            </nav>
+            <div class="header-utils player-header-utils">
+                <!-- Could add audio/video toggle here or other controls -->
+                 <button id="audio-video-toggle" class="player-control-button" title="Toggle Video Mode">
+                    <i class="fas fa-tv"></i> <!-- Start with Video Icon -->
+                 </button>
+                 <button id="play-pause-button" class="player-control-button" title="Play/Pause" disabled>
+                    <i class="fas fa-play"></i> <!-- Start with Play Icon -->
+                 </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="player-main">
+        <div class="ipod-container" id="ipod-container">
+            <!-- iPod Screen Area -->
+            <div class="ipod-screen" id="ipod-screen">
+                <div class="screen-content">
+                    <div id="youtube-player"></div> <!-- YouTube API will target this -->
+                    <div class="track-info" id="track-info">
+                        <p id="track-title">-- The Next Discussion --</p>
+                        <p id="track-artist"></p>
+                        <!-- Optional: Progress bar visual -->
+                        <div class="progress-bar-visual">
+                            <div class="progress-bar-filled" id="progress-bar-filled"></div>
+                        </div>
+                    </div>
+                     <div class="overlay-text" id="overlay-text">Audio Mode</div>
+                </div>
+            </div>
+
+            <!-- iPod Click Wheel / Buttons Area -->
+            <div class="ipod-controls">
+                <div class="click-wheel">
+                    <button id="dilla-button" class="control-button top" title="Play J Dilla">J Dilla</button>
+                    <button id="real-rap-button" class="control-button bottom" title="Play Real Rap">Real Rap</button>
+                    <button id="prev-button" class="control-button left" title="Previous (if playlist)"><i class="fas fa-backward-step"></i></button>
+                    <button id="next-button" class="control-button right" title="Next (if playlist)"><i class="fas fa-forward-step"></i></button>
+                    <button id="center-button" class="control-button center" title="Play/Pause"><i class="fas fa-play"></i></button>
+                </div>
+            </div>
+
+             <!-- Color Selection Area -->
+            <div class="color-selector" id="color-selector">
+                <span class="selector-label">Color:</span>
+                <button class="color-option silver" data-color="silver" title="Silver"></button>
+                <button class="color-option blue" data-color="blue" title="Blue"></button>
+                <button class="color-option green" data-color="green" title="Green"></button>
+                <button class="color-option pink" data-color="pink" title="Pink"></button>
+                <button class="color-option black" data-color="black" title="Black"></button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Re-purposed Footer -->
+    <footer class="site-footer player-footer">
+        <div class="footer-container">
+            <div class="footer-copyright">
+                © <span id="year"></span> Nick Hannon. App Concept: The Next Discussion.
+            </div>
+            <!-- Keep social links if desired -->
+            <div class="footer-social">
+                 <span class="footer-label">Connect:</span>
+                 <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                 <a href="#" aria-label="Discord" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
+                 <a href="#" aria-label="SoundCloud" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- YouTube IFrame Player API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <!-- Music Player Script -->
+    <script src="next-discussion.js"></script>
+</body>
+</html>
