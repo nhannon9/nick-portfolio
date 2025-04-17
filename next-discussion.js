@@ -145,7 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 listType: 'playlist',
                 index: 0
                 suggestedQuality: 'small' // Optimize for background/small screen
-            });
+        }
+        });
          // ** Attempt to enable shuffle **
          // Use a small timeout just in case the player needs a moment
         setTimeout(() => {
