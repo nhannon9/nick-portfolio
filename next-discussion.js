@@ -37,8 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('progress-bar-filled');
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const bodyElement = document.body;
-
-
+    const archiveSection = document.getElementById('archive-section');
 
     // --- YouTube Player State ---
     let player; // YouTube Player object
@@ -300,6 +299,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- 9. Play Specific Source ---
+    function playSpecificSource(type, id, name = "Loading...") {
+        if (!isPlayerReady) {
+         console.warn("Player not ready.");
+         return;
+        }
+         console.log(`Loading specific source: ${type} - ${id}`);
+
+     // Update display immediately
+    trackTitleElement.textContent = name;
+    trackArtistElement.textContent = type === 'playlist' ? "Playlist" : "Track";
+    progressBar.style.width = '0%';
+
+
+    if (type === 'playlist') {
+        player.loadPlaylist({
+            list: id,
+            listType: 'playlist',
+            index: 0, // Start playlist from beginning for pinned items
+            suggestedQuality: 'small'
+        });
+         player.setShuffle(false); // Ensure shuffle is off for specific playlist pins
+    } else if (type === 'video') {
+        player.loadVideoById({
+            videoId: id,
+            suggestedQuality: 'small'
+         });
+         player.setShuffle(false); // Ensure shuffle is off for single videos
+    }
+}
+
     // --- Event Listeners ---
     if (dillaButton) {
         dillaButton.addEventListener('click', () => playRandomSource(DILLA_SOURCES));
@@ -352,6 +382,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
      }
 
+        if (archiveSection) {
+            archiveSection.addEventListener('click', (e) => {
+                if (e.target.classList.contains('archive-button')) {
+                    const button = e.target;
+                    const type = button.dataset.type;
+                    const id = button.dataset.id;
+                    const name = button.textContent; // Use button text as initial name
+                    if (type && id) {
+                        playSpecificSource(type, id, name);
+                    }
+                }
+            });
+    }
     
     // --- Initialization ---
     setCopyrightYear();
