@@ -2,17 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Configuration ---
     const DILLA_SOURCES = [
         // Playlists (Add more good ones!) - Use Playlist ID from URL
-        { type: 'playlist', id: 'fabj6XusOHI&list=PLySydR2Lc6tWHLTPdBVZEA0aECGokHiZC' }, // Example: "J Dilla Instrumentals"
-        { type: 'playlist', id: 'nW4savgu9aw&list=PL5uJoXmE7hgvhWREHqbcZbjvn_L031BdU' }, // Example: "J Dilla Beats"
+        { type: 'playlist', id: 'PLySydR2Lc6tWHLTPdBVZEA0aECGokHiZC' }, // Example: "J Dilla Instrumentals"
+        { type: 'playlist', id: 'PL5uJoXmE7hgvhWREHqbcZbjvn_L031BdU' }, // Example: "J Dilla Beats"
         // You can also add specific Video IDs for very rare/specific tracks
         // { type: 'video', id: 'VIDEO_ID_HERE' },
     ];
 
     const REAL_RAP_SOURCES = [
         // Specific Albums (as playlists if available, or curated track lists)
-        { type: 'playlist', id: 'X7zN9D6EGdU&list=PLrbFUdbfepXXqaWS722iHEtKjbjib6aex', name: "Black Moon - Enta Da Stage" }, // Example Playlist ID
-        { type: 'playlist', id: 'QEuYjxnQ9IM&list=PLrbFUdbfepXULZMri62heffZj_QoXYkeT', name: "OGC - Da Storm" }, // Example Playlist ID
-        { type: 'playlist', id: 'ZRTbVFk9h6c&list=PLrbFUdbfepXW6-xY2YMKOaGpyJIW3V0Hl', name: "Smif-N-Wessun - Dah Shinin'" }, // Example
+        { type: 'playlist', id: 'PLrbFUdbfepXXqaWS722iHEtKjbjib6aex', name: "Black Moon - Enta Da Stage" }, // Example Playlist ID
+        { type: 'playlist', id: 'PLrbFUdbfepXULZMri62heffZj_QoXYkeT', name: "OGC - Da Storm" }, // Example Playlist ID
+        { type: 'playlist', id: 'PLrbFUdbfepXW6-xY2YMKOaGpyJIW3V0Hl', name: "Smif-N-Wessun - Dah Shinin'" }, // Example
         { type: 'playlist', id: 'PLrbFUdbfepXU-5WU0HeCe_d56loyH9OdP', name: "Heltah Skeltah - Nocturnal" }, // Example
         // Add more album playlists or specific video IDs
          { type: 'video', id: 'h2PQa_OmKdo', name: "Nas - N.Y. State of Mind" },
