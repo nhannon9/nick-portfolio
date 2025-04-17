@@ -451,3 +451,78 @@
     .player-control-button { font-size: 1.2rem; }
     .player-header-utils { gap: var(--spacing-md); }
 }
+
+      
+/* ==========================================================================
+   Dark Mode Theme
+   ========================================================================== */
+
+:root {
+    /* Define dark theme colors */
+    --dark-page-bg: #1a1a1d;        /* Near Black */
+    --dark-text-color: #f1f3f5;     /* Light Gray */
+    --dark-header-bg: rgba(30, 30, 33, 0.85); /* Dark Transparent */
+    --dark-footer-bg: #111113;      /* Darker Black */
+    --dark-border-color: #444;
+    --dark-link-color: #58a6ff;     /* GitHub Dark Blue */
+    --dark-subtle-text: #888;
+}
+
+/* Apply dark styles when .dark-mode class is on body */
+body.dark-mode {
+    background-color: var(--dark-page-bg);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .player-header {
+    background-color: var(--dark-header-bg);
+    border-bottom-color: var(--dark-border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Darker shadow */
+}
+
+body.dark-mode .player-header .logo a,
+body.dark-mode .player-nav,
+body.dark-mode .player-control-button {
+    color: var(--dark-subtle-text);
+}
+body.dark-mode .player-header .logo a:hover,
+body.dark-mode .player-control-button:hover {
+    color: var(--dark-link-color);
+}
+ body.dark-mode .player-control-button.active {
+    color: var(--dark-link-color); /* Keep active color distinct */
+ }
+ body.dark-mode .player-control-button:disabled {
+    color: #555; /* Adjust disabled color for dark */
+ }
+
+
+body.dark-mode .player-footer {
+    background-color: var(--dark-footer-bg);
+    color: var(--dark-subtle-text);
+    border-top: 1px solid var(--dark-border-color); /* Add top border for separation */
+}
+
+body.dark-mode .player-footer .footer-social a {
+    color: var(--dark-subtle-text);
+}
+body.dark-mode .player-footer .footer-social a:hover {
+    color: var(--dark-text-color); /* Brighter hover */
+}
+
+/* Adjust iPod container shadow slightly for dark mode */
+body.dark-mode .ipod-container {
+     box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1);
+}
+
+/* Adjust Color Selector label */
+body.dark-mode .color-selector .selector-label {
+    color: var(--dark-subtle-text);
+}
+
+/* Adjust default active color border (optional) */
+/* body.dark-mode .color-option.active {
+     box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.6);
+} */
+
+    
