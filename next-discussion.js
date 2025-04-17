@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const bodyElement = document.body;
     const archiveSection = document.getElementById('archive-section');
-
+    const progressBarContainer = document.querySelector('.progress-bar-visual');
+    
     // --- YouTube Player State ---
     let player; // YouTube Player object
     let isPlayerReady = false;
@@ -394,7 +395,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
-    }
+      }
+    if (progressBarContainer && player) { // Make sure player is potentially available
+    progressBarContainer.addEventListener('click', (e) => {
+        if (!isPlayerReady || !player.getDuration) return;
+
+        const duration = player.getDuration();
+        if (duration <= 0) return; // Can't seek if no duration
+
+        // Calculate click position relative to the bar
+        const rect = progressBarContainer.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const clickedRatio = Math.max(0, Math.min(1, offsetX / progressBarContainer.offsetWidth)); // Clamp between 0 and 1
+
+        const targetTime = clickedRatio * duration;
+
+        console.log(`Seeking to ${targetTime.toFixed(2)}s (${(clickedRatio * 100).toFixed(1)}%)`);
+        player.seekTo(targetTime, true); // true = allow seek ahead
+
+        // Optional: Immediately update visual progress bar
+        progressBar.style.width = `${clickedRatio * 100}%`;
+    });
+}
     
     // --- Initialization ---
     setCopyrightYear();
