@@ -143,21 +143,56 @@ document.addEventListener('DOMContentLoaded', () => {
             player.loadPlaylist({
                 list: source.id,
                 listType: 'playlist',
-                index: 0, // Start from the beginning of the playlist
-                // index: Math.floor(Math.random() * 50), // Or start randomly within playlist (approx)
+                index: 0
                 suggestedQuality: 'small' // Optimize for background/small screen
             });
+         // ** Attempt to enable shuffle **
+         // Use a small timeout just in case the player needs a moment
+        setTimeout(() => {
+            if (player && player.setShuffle) {
+                player.setShuffle(true);
+                 // Optional: Automatically play the *next* video in the now shuffled list
+                 // This often works better than relying on index 0 after shuffle.
+                 player.nextVideo();
+                 console.log("Playlist loaded, shuffle enabled, playing next.");
+             }
+         }, 500); // 500ms delay, adjust if needed
         } else if (source.type === 'video') {
             player.loadVideoById({
                 videoId: source.id,
                 suggestedQuality: 'small'
              });
+            if (player && player.setShuffle) { // Check if function exists
+             player.setShuffle(false);
+             console.log("Single video loaded, shuffle disabled.");
+        }
         }
         // Update display immediately (optional, state change will also update)
         trackTitleElement.textContent = source.name || "Loading...";
         trackArtistElement.textContent = source.type === 'playlist' ? "Playlist" : "Track";
         progressBar.style.width = '0%';
     }
+        // Modify playSpecificSource to ensure shuffle is OFF
+function playSpecificSource(type, id, name = "Loading...") {
+     if (!isPlayerReady) { /* ... */ return; }
+     console.log(`Loading specific source: ${type} - ${id}`);
+
+     trackTitleElement.textContent = name;
+     trackArtistElement.textContent = type === 'playlist' ? "Playlist" : "Track";
+     progressBar.style.width = '0%';
+
+    // ** Crucially, ensure shuffle is OFF for pinned items **
+    if (player && player.setShuffle) {
+         player.setShuffle(false);
+         console.log("Loading pinned item, shuffle disabled.");
+     }
+
+    if (type === 'playlist') {
+        player.loadPlaylist({ list: id, listType: 'playlist', index: 0, suggestedQuality: 'small' });
+    } else if (type === 'video') {
+        player.loadVideoById({ videoId: id, suggestedQuality: 'small' });
+    }
+}
 
     // --- 3. UI Updates ---
     function updateTrackDisplay() {
