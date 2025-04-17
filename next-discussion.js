@@ -4,20 +4,31 @@ document.addEventListener('DOMContentLoaded', () => {
         // Playlists (Add more good ones!) - Use Playlist ID from URL
         { type: 'playlist', id: 'PLySydR2Lc6tWHLTPdBVZEA0aECGokHiZC' }, // Example: "J Dilla Instrumentals"
         { type: 'playlist', id: 'PL5uJoXmE7hgvhWREHqbcZbjvn_L031BdU' }, // Example: "J Dilla Beats"
+        { type: 'playlist', id: 'PLpDXhkESrNJs-0RpiBhhPVrgTxGHikr4l' }, // Example: "J Dilla Beats"
         // You can also add specific Video IDs for very rare/specific tracks
         // { type: 'video', id: 'VIDEO_ID_HERE' },
+        { type: 'video', id: 'FhwLNERl1AY', name: "J Dilla - Kamaal (Instrumental) (Extended)" },
+        { type: 'video', id: 'vO2nWXCVt6o', name: "J Dilla - In Space (15 Minute Vinyl Version)" },
+        { type: 'video', id: 'q8WMhklSumg', name: "J Dilla's Colors of You | Park Nights" },
+        { type: 'video', id: 'w72Dkdcn45o', name: "J Dilla - Get Dis Money (Instrumental) (Extended)" },
+        { type: 'video', id: 'R6UucC-r7wA', name: "Arlekin Ulmikundura, Quasimoto/Madlib, J Dilla - Walking with Lord Quas part.1" },
+        { type: 'video', id: '7ZS91gws7oQ', name: "Quasimoto n’ friends but its chill af | Lofi Mix | CHILLAF | " },
     ];
 
     const REAL_RAP_SOURCES = [
         // Specific Albums (as playlists if available, or curated track lists)
         { type: 'playlist', id: 'PLrbFUdbfepXXqaWS722iHEtKjbjib6aex', name: "Black Moon - Enta Da Stage" }, // Example Playlist ID
-        { type: 'playlist', id: 'PLrbFUdbfepXULZMri62heffZj_QoXYkeT', name: "OGC - Da Storm" }, // Example Playlist ID
+        { type: 'playlist', id: 'PLrbFUdbfepXULZMri62heffZj_QoXYkeT', name: "O.G.C. - Da Storm" }, // Example Playlist ID
         { type: 'playlist', id: 'PLrbFUdbfepXW6-xY2YMKOaGpyJIW3V0Hl', name: "Smif-N-Wessun - Dah Shinin'" }, // Example
         { type: 'playlist', id: 'PLrbFUdbfepXU-5WU0HeCe_d56loyH9OdP', name: "Heltah Skeltah - Nocturnal" }, // Example
         // Add more album playlists or specific video IDs
-         { type: 'video', id: 'h2PQa_OmKdo', name: "Nas - N.Y. State of Mind" },
-         { type: 'video', id: 'JxPmzBi3KIk', name: "Mobb Deep - Shook Ones, Pt. II" },
-         { type: 'video', id: 'fiGyLsW47_k', name: "Pete Rock & CL Smooth - T.R.O.Y." },
+         { type: 'video', id: 'ImSoA_fAVL4', name: "Nas - Memory Lane (Sittin' in da Park)" },
+         { type: 'video', id: '8FGuJdxldkI', name: "MF DOOM X MR. FANTASTIK - UNRELEASED TRACK (PROD. MADLIB)" },
+         { type: 'video', id: 'yoW21AZltDo', name: "9th Wonder - You Girl Soul (Instrumental)" },
+         { type: 'video', id: 'pkXDZQrebi4', name: "O.G.C. - God Don't Like Ugly (Instrumental)" },
+         { type: 'video', id: 'xUDNMmbYtkw', name: "O.G.C. - No Fear" }, 
+         { type: 'video', id: 'm_bOjWb0KeI', name: "Smif-N-Wessun: NPR Music Tiny Desk Concert" }, 
+         { type: 'video', id: 'ubWL8VAPoYw', name: "Snoop Dogg - Riders on the Storm (feat. The Doors)" }, 
 
     ];
 
