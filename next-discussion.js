@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.getElementById('prev-button');
     const nextButton = document.getElementById('next-button');
     const progressBar = document.getElementById('progress-bar-filled');
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const bodyElement = document.body;
+
 
 
     // --- YouTube Player State ---
@@ -281,6 +284,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- 8. Dark Mode Toggle ---
+    function setDarkMode(isDark) {
+        const icon = darkModeToggle.querySelector('i');
+        if (isDark) {
+            bodyElement.classList.add('dark-mode');
+            if (icon) icon.className = 'fas fa-sun'; // Show Sun icon
+            darkModeToggle.setAttribute('title', 'Switch to Light Mode');
+            localStorage.setItem('theme', 'dark'); // Save preference
+        } else {
+            bodyElement.classList.remove('dark-mode');
+            if (icon) icon.className = 'fas fa-moon'; // Show Moon icon
+             darkModeToggle.setAttribute('title', 'Switch to Dark Mode');
+            localStorage.setItem('theme', 'light'); // Save preference
+        }
+    }
+
     // --- Event Listeners ---
     if (dillaButton) {
         dillaButton.addEventListener('click', () => playRandomSource(DILLA_SOURCES));
@@ -326,7 +345,14 @@ document.addEventListener('DOMContentLoaded', () => {
          nextButton.disabled = true;
      }
 
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+        // Toggle based on current state
+        setDarkMode(!bodyElement.classList.contains('dark-mode'));
+        });
+     }
 
+    
     // --- Initialization ---
     setCopyrightYear();
     // Player init happens via onYouTubeIframeAPIReady callback
@@ -335,5 +361,12 @@ document.addEventListener('DOMContentLoaded', () => {
      setAudioVideoMode(isVideoVisible);
      setColorTheme('silver'); // Start with default silver
 
+    // Check for saved theme preference on load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        setDarkMode(true);
+    } else {
+        setDarkMode(false); // Default to light
+    }
 
 }); // End DOMContentLoaded
