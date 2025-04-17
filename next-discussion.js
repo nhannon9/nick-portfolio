@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const bodyElement = document.body;
     const archiveSection = document.getElementById('archive-section');
     const progressBarContainer = document.querySelector('.progress-bar-visual');
+    const playbackRateToggle = document.getElementById('playback-rate-toggle');
+    const rateIndicator = playbackRateToggle?.querySelector('.rate-indicator'); // Use optional chaining
     
     // --- YouTube Player State ---
     let player; // YouTube Player object
@@ -46,6 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let isVideoVisible = true; // Start in video mode
     let currentTrackInfo = { title: "-- The Next Discussion --", artist: "" };
     let updateInterval; // For progress bar
+    let currentPlaybackRateIndex = 2; // Index for [0.5, 0.75, 1, 1.25, 1.5]
+    const PLAYBACK_RATES = [0.5, 0.75, 1, 1.25, 1.5];
 
     // --- 1. YouTube Player API Initialization ---
     // This function is called automatically by the YouTube API script
@@ -79,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
         headerPlayPauseButton.disabled = false;
         prevButton.disabled = false;
         nextButton.disabled = false;
+
+        if (playbackRateToggle) playbackRateToggle.disabled = false;
 
         // Update UI elements
         updateTrackDisplay();
@@ -331,6 +337,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 }
 
+    // --- 10. Playback Rate Control ---
+function cyclePlaybackRate() {
+    if (!isPlayerReady || !player.setPlaybackRate || !rateIndicator) return;
+
+    currentPlaybackRateIndex = (currentPlaybackRateIndex + 1) % PLAYBACK_RATES.length;
+    const newRate = PLAYBACK_RATES[currentPlaybackRateIndex];
+
+    player.setPlaybackRate(newRate);
+    console.log(`Set playback rate to: ${newRate}x`);
+
+    // Update UI
+    rateIndicator.textContent = `${newRate}x`;
+     playbackRateToggle.setAttribute('title', `Change Speed (${newRate}x)`);
+}
+
     // --- Event Listeners ---
     if (dillaButton) {
         dillaButton.addEventListener('click', () => playRandomSource(DILLA_SOURCES));
@@ -416,6 +437,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Optional: Immediately update visual progress bar
         progressBar.style.width = `${clickedRatio * 100}%`;
     });
+}
+
+    if (playbackRateToggle) {
+    playbackRateToggle.addEventListener('click', cyclePlaybackRate);
+    playbackRateToggle.disabled = true; // Disable until player ready
 }
     
     // --- Initialization ---
