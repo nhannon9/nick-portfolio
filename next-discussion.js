@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBarContainer = document.querySelector('.progress-bar-visual');
     const playbackRateToggle = document.getElementById('playback-rate-toggle');
     const rateIndicator = playbackRateToggle?.querySelector('.rate-indicator'); // Use optional chaining
-    
+
     // --- YouTube Player State ---
     let player; // YouTube Player object
     let isPlayerReady = false;
@@ -143,57 +143,59 @@ document.addEventListener('DOMContentLoaded', () => {
             player.loadPlaylist({
                 list: source.id,
                 listType: 'playlist',
-                index: 0
+                index: 0, // <<<<< COMMA ADDED HERE
                 suggestedQuality: 'small' // Optimize for background/small screen
-        }
-        });
-         // ** Attempt to enable shuffle **
-         // Use a small timeout just in case the player needs a moment
-        setTimeout(() => {
-            if (player && player.setShuffle) {
-                player.setShuffle(true);
-                 // Optional: Automatically play the *next* video in the now shuffled list
-                 // This often works better than relying on index 0 after shuffle.
-                 player.nextVideo();
-                 console.log("Playlist loaded, shuffle enabled, playing next.");
-             }
-         }, 500); // 500ms delay, adjust if needed
+            });
+             // ** Attempt to enable shuffle **
+             // Use a small timeout just in case the player needs a moment
+            setTimeout(() => {
+                if (player && player.setShuffle) {
+                    player.setShuffle(true);
+                     // Optional: Automatically play the *next* video in the now shuffled list
+                     // This often works better than relying on index 0 after shuffle.
+                     player.nextVideo();
+                     console.log("Playlist loaded, shuffle enabled, playing next.");
+                 }
+             }, 500); // 500ms delay, adjust if needed
+
         } else if (source.type === 'video') {
             player.loadVideoById({
                 videoId: source.id,
                 suggestedQuality: 'small'
              });
+            // Ensure shuffle is off for single videos
             if (player && player.setShuffle) { // Check if function exists
-             player.setShuffle(false);
-             console.log("Single video loaded, shuffle disabled.");
-        }
+                 player.setShuffle(false);
+                 console.log("Single video loaded, shuffle disabled.");
+            }
         }
         // Update display immediately (optional, state change will also update)
         trackTitleElement.textContent = source.name || "Loading...";
         trackArtistElement.textContent = source.type === 'playlist' ? "Playlist" : "Track";
         progressBar.style.width = '0%';
     }
-        // Modify playSpecificSource to ensure shuffle is OFF
-function playSpecificSource(type, id, name = "Loading...") {
-     if (!isPlayerReady) { /* ... */ return; }
-     console.log(`Loading specific source: ${type} - ${id}`);
 
-     trackTitleElement.textContent = name;
-     trackArtistElement.textContent = type === 'playlist' ? "Playlist" : "Track";
-     progressBar.style.width = '0%';
+    // Modify playSpecificSource to ensure shuffle is OFF
+    function playSpecificSource(type, id, name = "Loading...") {
+        if (!isPlayerReady) { console.warn("Player not ready."); return; } // Simplified return
+        console.log(`Loading specific source: ${type} - ${id}`);
 
-    // ** Crucially, ensure shuffle is OFF for pinned items **
-    if (player && player.setShuffle) {
-         player.setShuffle(false);
-         console.log("Loading pinned item, shuffle disabled.");
-     }
+        trackTitleElement.textContent = name;
+        trackArtistElement.textContent = type === 'playlist' ? "Playlist" : "Track";
+        progressBar.style.width = '0%';
 
-    if (type === 'playlist') {
-        player.loadPlaylist({ list: id, listType: 'playlist', index: 0, suggestedQuality: 'small' });
-    } else if (type === 'video') {
-        player.loadVideoById({ videoId: id, suggestedQuality: 'small' });
+        // ** Crucially, ensure shuffle is OFF for pinned items **
+        if (player && player.setShuffle) {
+            player.setShuffle(false);
+            console.log("Loading pinned item, shuffle disabled.");
+        }
+
+        if (type === 'playlist') {
+            player.loadPlaylist({ list: id, listType: 'playlist', index: 0, suggestedQuality: 'small' });
+        } else if (type === 'video') {
+            player.loadVideoById({ videoId: id, suggestedQuality: 'small' });
+        }
     }
-}
 
     // --- 3. UI Updates ---
     function updateTrackDisplay() {
@@ -342,51 +344,23 @@ function playSpecificSource(type, id, name = "Loading...") {
         }
     }
 
-    // --- 9. Play Specific Source ---
-    function playSpecificSource(type, id, name = "Loading...") {
-        if (!isPlayerReady) {
-         console.warn("Player not ready.");
-         return;
-        }
-         console.log(`Loading specific source: ${type} - ${id}`);
-
-     // Update display immediately
-    trackTitleElement.textContent = name;
-    trackArtistElement.textContent = type === 'playlist' ? "Playlist" : "Track";
-    progressBar.style.width = '0%';
-
-
-    if (type === 'playlist') {
-        player.loadPlaylist({
-            list: id,
-            listType: 'playlist',
-            index: 0, // Start playlist from beginning for pinned items
-            suggestedQuality: 'small'
-        });
-         player.setShuffle(false); // Ensure shuffle is off for specific playlist pins
-    } else if (type === 'video') {
-        player.loadVideoById({
-            videoId: id,
-            suggestedQuality: 'small'
-         });
-         player.setShuffle(false); // Ensure shuffle is off for single videos
-    }
-}
+    // --- 9. Play Specific Source (Function definition moved up earlier) ---
+    // function playSpecificSource(type, id, name = "Loading...") { ... }
 
     // --- 10. Playback Rate Control ---
-function cyclePlaybackRate() {
-    if (!isPlayerReady || !player.setPlaybackRate || !rateIndicator) return;
+    function cyclePlaybackRate() {
+        if (!isPlayerReady || !player.setPlaybackRate || !rateIndicator) return;
 
-    currentPlaybackRateIndex = (currentPlaybackRateIndex + 1) % PLAYBACK_RATES.length;
-    const newRate = PLAYBACK_RATES[currentPlaybackRateIndex];
+        currentPlaybackRateIndex = (currentPlaybackRateIndex + 1) % PLAYBACK_RATES.length;
+        const newRate = PLAYBACK_RATES[currentPlaybackRateIndex];
 
-    player.setPlaybackRate(newRate);
-    console.log(`Set playback rate to: ${newRate}x`);
+        player.setPlaybackRate(newRate);
+        console.log(`Set playback rate to: ${newRate}x`);
 
-    // Update UI
-    rateIndicator.textContent = `${newRate}x`;
-     playbackRateToggle.setAttribute('title', `Change Speed (${newRate}x)`);
-}
+        // Update UI
+        rateIndicator.textContent = `${newRate}x`;
+        playbackRateToggle.setAttribute('title', `Change Speed (${newRate}x)`);
+    }
 
     // --- Event Listeners ---
     if (dillaButton) {
@@ -435,51 +409,55 @@ function cyclePlaybackRate() {
 
       if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
-        // Toggle based on current state
-        setDarkMode(!bodyElement.classList.contains('dark-mode'));
+            // Toggle based on current state
+            setDarkMode(!bodyElement.classList.contains('dark-mode'));
         });
      }
 
-        if (archiveSection) {
-            archiveSection.addEventListener('click', (e) => {
-                if (e.target.classList.contains('archive-button')) {
-                    const button = e.target;
-                    const type = button.dataset.type;
-                    const id = button.dataset.id;
-                    const name = button.textContent; // Use button text as initial name
-                    if (type && id) {
-                        playSpecificSource(type, id, name);
-                    }
+    if (archiveSection) {
+        archiveSection.addEventListener('click', (e) => {
+            if (e.target.classList.contains('archive-button')) {
+                const button = e.target;
+                const type = button.dataset.type;
+                const id = button.dataset.id;
+                const name = button.textContent; // Use button text as initial name
+                if (type && id) {
+                    playSpecificSource(type, id, name);
                 }
-            });
-      }
-    if (progressBarContainer && player) { // Make sure player is potentially available
-    progressBarContainer.addEventListener('click', (e) => {
-        if (!isPlayerReady || !player.getDuration) return;
+            }
+        });
+    }
 
-        const duration = player.getDuration();
-        if (duration <= 0) return; // Can't seek if no duration
+    // Check if progressBarContainer exists before adding listener
+    if (progressBarContainer) {
+        progressBarContainer.addEventListener('click', (e) => {
+            // Check if player is ready inside the handler, as player might not exist yet when this runs
+            if (!isPlayerReady || !player.getDuration) return;
 
-        // Calculate click position relative to the bar
-        const rect = progressBarContainer.getBoundingClientRect();
-        const offsetX = e.clientX - rect.left;
-        const clickedRatio = Math.max(0, Math.min(1, offsetX / progressBarContainer.offsetWidth)); // Clamp between 0 and 1
+            const duration = player.getDuration();
+            if (duration <= 0) return; // Can't seek if no duration
 
-        const targetTime = clickedRatio * duration;
+            // Calculate click position relative to the bar
+            const rect = progressBarContainer.getBoundingClientRect();
+            const offsetX = e.clientX - rect.left;
+            const clickedRatio = Math.max(0, Math.min(1, offsetX / progressBarContainer.offsetWidth)); // Clamp between 0 and 1
 
-        console.log(`Seeking to ${targetTime.toFixed(2)}s (${(clickedRatio * 100).toFixed(1)}%)`);
-        player.seekTo(targetTime, true); // true = allow seek ahead
+            const targetTime = clickedRatio * duration;
 
-        // Optional: Immediately update visual progress bar
-        progressBar.style.width = `${clickedRatio * 100}%`;
-    });
-}
+            console.log(`Seeking to ${targetTime.toFixed(2)}s (${(clickedRatio * 100).toFixed(1)}%)`);
+            player.seekTo(targetTime, true); // true = allow seek ahead
+
+            // Optional: Immediately update visual progress bar
+            progressBar.style.width = `${clickedRatio * 100}%`;
+        });
+    } // <-- Added closing brace for the progressBarContainer check
+
 
     if (playbackRateToggle) {
-    playbackRateToggle.addEventListener('click', cyclePlaybackRate);
-    playbackRateToggle.disabled = true; // Disable until player ready
-}
-    
+        playbackRateToggle.addEventListener('click', cyclePlaybackRate);
+        playbackRateToggle.disabled = true; // Disable until player ready
+    }
+
     // --- Initialization ---
     setCopyrightYear();
     // Player init happens via onYouTubeIframeAPIReady callback
