@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'playlist', id: 'PLySydR2Lc6tWHLTPdBVZEA0aECGokHiZC' },
         { type: 'playlist', id: 'PL5uJoXmE7hgvhWREHqbcZbjvn_L031BdU' },
         { type: 'playlist', id: 'PLpDXhkESrNJs-0RpiBhhPVrgTxGHikr4l' },
+        { type: 'playlist', id: 'PLd-wAjDtRO-TaMues5RF_46WklGB0CPDc' },
         // Videos
         { type: 'video', id: 'FhwLNERl1AY', name: "J Dilla - Kamaal (Instrumental) (Extended)" },
         { type: 'video', id: 'vO2nWXCVt6o', name: "J Dilla - In Space (15 Minute Vinyl Version)" },
