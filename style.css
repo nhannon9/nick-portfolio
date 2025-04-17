@@ -798,6 +798,31 @@ img, svg, video {
     /* Hover state will use filter: brightness(0.9) */
 }
 
+/* The Next Discussion Player Section Card */
+.music-player-section {
+    /* Style the card */
+    --card-bg: #4a4a4e; /* Dark grey, techy feel */
+    --card-text-color: var(--color-text-light);
+    --card-heading-color: var(--color-accent); /* Gold heading like music */
+    --card-icon-color: var(--color-accent);
+    background-color: #303033; /* Slightly lighter section bg */
+}
+.music-player-section .player-card-icon {
+    font-size: 3rem;
+    color: var(--card-icon-color);
+    margin-bottom: var(--spacing-lg);
+}
+/* Style the button if needed, primary gradient should work */
+.music-player-section .cta-button.btn-primary {
+     background: linear-gradient(to right, var(--color-secondary), var(--color-primary)); /* Blue/Purple Gradient */
+}
+.music-player-section .section-background.player-bg-pattern {
+    /* Add a subtle pattern if desired */
+    /* background-image: url('images/tech-pattern.png'); */
+    opacity: 0.04;
+    z-index: 1;
+}
+
 /* ==========================================================================
    8. Footer
    ========================================================================== */
