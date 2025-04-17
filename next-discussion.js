@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let animationFrameId = null;
     const vizBars = 50;
     let vizColor = '#f0f0f0';
+    // State variable to track the last category chosen for random play
+    let lastRandomSourceCategory = DILLA_SOURCES; // Default to Dilla
 
     // --- 1. YouTube Player API Initialization ---
     window.onYouTubeIframeAPIReady = function() {
@@ -127,15 +129,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. Playback Logic ---
     function updatePlaylistControls(isPlaylistLoaded) {
         if (prevButton) prevButton.disabled = !isPlaylistLoaded;
-        if (nextButton) nextButton.disabled = !isPlaylistLoaded;
-        console.log(`Playlist controls ${isPlaylistLoaded ? 'enabled' : 'disabled'}`);
+        // Keep Next button always enabled, its behavior changes instead
+        // if (nextButton) nextButton.disabled = !isPlaylistLoaded;
+        if (nextButton) nextButton.disabled = false; // Always enable Next button now
+        console.log(`Prev control ${!isPlaylistLoaded ? 'disabled' : 'enabled'}. Next control always enabled.`);
     }
 
-    // ** REVERTED RANDOM SOURCE LOGIC **
     function playRandomSource(sourceArray) {
         if (!isPlayerReady || sourceArray.length === 0) {
             console.warn("Player not ready or source array empty."); return;
         }
+        // Store the category being played
+        lastRandomSourceCategory = sourceArray; // Remember which category we picked from
+
         const randomIndex = Math.floor(Math.random() * sourceArray.length);
         const source = sourceArray[randomIndex];
         console.log("Loading random source:", source);
@@ -146,34 +152,19 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = '0%';
 
         if (source.type === 'playlist') {
-            player.loadPlaylist({
-                list: source.id,
-                listType: 'playlist',
-                index: 0, // Start at index 0
-                suggestedQuality: 'small'
-            });
-            // ** Use the shuffle + next method again **
+            player.loadPlaylist({ list: source.id, listType: 'playlist', index: 0, suggestedQuality: 'small' });
+            // Use the shuffle + next method again
             setTimeout(() => {
-                if (player && player.setShuffle) {
-                    player.setShuffle(true); // Enable shuffle
-                    player.nextVideo(); // Play the 'next' (now random first) video
-                    console.log("Playlist loaded, shuffle enabled, playing next.");
-                }
-            }, 500); // Small delay
-            updatePlaylistControls(true); // Enable prev/next for playlists
-
+                if (player && player.setShuffle) { player.setShuffle(true); player.nextVideo(); console.log("Playlist loaded, shuffle enabled, playing next."); }
+            }, 500);
+            updatePlaylistControls(true); // Enable prev button, next button stays enabled
         } else if (source.type === 'video') {
-            // Ensure shuffle is off for single videos
-            if (player && player.setShuffle) {
-                player.setShuffle(false);
-                console.log("Single video loaded, shuffle disabled.");
-            }
+            if (player && player.setShuffle) { player.setShuffle(false); console.log("Single video loaded, shuffle disabled."); }
             player.loadVideoById({ videoId: source.id, suggestedQuality: 'small' });
-            updatePlaylistControls(false); // Disable prev/next for single videos
+            updatePlaylistControls(false); // Disable prev button, next button stays enabled
         }
     }
 
-    // Keep specific source logic the same (no shuffle for pinned items)
     function playSpecificSource(type, id, name = "Loading...") {
         if (!isPlayerReady) { console.warn("Player not ready."); return; }
         console.log(`Loading specific source: ${type} - ${id}`);
@@ -183,17 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = '0%';
 
         // Ensure shuffle is OFF for pinned items
-        if (player && player.setShuffle) {
-            player.setShuffle(false);
-            console.log("Loading pinned item, shuffle disabled.");
-        }
+        if (player && player.setShuffle) { player.setShuffle(false); console.log("Loading pinned item, shuffle disabled."); }
 
         if (type === 'playlist') {
             player.loadPlaylist({ list: id, listType: 'playlist', index: 0, suggestedQuality: 'small' });
-            updatePlaylistControls(true); // Enable prev/next
+            updatePlaylistControls(true); // Enable prev, next stays enabled
         } else if (type === 'video') {
             player.loadVideoById({ videoId: id, suggestedQuality: 'small' });
-            updatePlaylistControls(false); // Disable prev/next
+            updatePlaylistControls(false); // Disable prev, next stays enabled
         }
     }
 
@@ -321,8 +309,31 @@ document.addEventListener('DOMContentLoaded', () => {
     audioVideoToggle?.addEventListener('click', () => setAudioVideoMode(!isVideoVisible));
     centerButton?.addEventListener('click', togglePlayPause);
     headerPlayPauseButton?.addEventListener('click', togglePlayPause);
-    prevButton?.addEventListener('click', () => { if (isPlayerReady && player.previousVideo) player.previousVideo(); });
-    nextButton?.addEventListener('click', () => { if (isPlayerReady && player.nextVideo) player.nextVideo(); });
+
+    // Previous Button Listener - only works if playlist is loaded (button state handled by updatePlaylistControls)
+    prevButton?.addEventListener('click', () => {
+        if (isPlayerReady && player.previousVideo) {
+             player.previousVideo();
+        }
+    });
+
+    // Next Button Listener - Modified Behavior
+    nextButton?.addEventListener('click', () => {
+        if (!isPlayerReady) return;
+        // Check if a playlist is loaded using getPlaylist() - might return empty array or null
+        const currentPlaylist = player.getPlaylist ? player.getPlaylist() : null;
+
+        if (currentPlaylist && Array.isArray(currentPlaylist) && currentPlaylist.length > 0 && player.nextVideo) {
+            // Playlist is active and player has nextVideo function
+            console.log("Playlist active, using player.nextVideo()");
+            player.nextVideo();
+        } else {
+            // No playlist active, or nextVideo not available - play a random source from the last category
+            console.log("No playlist active or at end, triggering playRandomSource with last category.");
+            playRandomSource(lastRandomSourceCategory); // Use the stored category
+        }
+    });
+
     darkModeToggle?.addEventListener('click', () => setDarkMode(!bodyElement.classList.contains('dark-mode')));
     archiveSection?.addEventListener('click', (e) => { if (e.target.classList.contains('archive-button')) { const btn = e.target; playSpecificSource(btn.dataset.type, btn.dataset.id, btn.textContent); } });
     progressBarContainer?.addEventListener('click', (e) => {
