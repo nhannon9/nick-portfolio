@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'playlist', id: 'PLpDXhkESrNJs-0RpiBhhPVrgTxGHikr4l' },
         { type: 'playlist', id: 'PLd-wAjDtRO-TaMues5RF_46WklGB0CPDc' },
         // Videos
-        { type: 'video', id: 'FhwLNERl1AY', name: "J Dilla - Kamaal (Instrumental) (Extended)" },
-        { type: 'video', id: 'vO2nWXCVt6o', name: "J Dilla - In Space (15 Minute Vinyl Version)" },
-        { type: 'video', id: 'q8WMhklSumg', name: "J Dilla's Colors of You | Park Nights" },
-        { type: 'video', id: 'w72Dkdcn45o', name: "J Dilla - Get Dis Money (Instrumental) (Extended)" },
-        { type: 'video', id: 'R6UucC-r7wA', name: "Arlekin Ulmikundura, Quasimoto/Madlib, J Dilla - Walking with Lord Quas part.1" },
-        { type: 'video', id: '7ZS91gws7oQ', name: "Quasimoto n’ friends but its chill af | Lofi Mix | CHILLAF | " },
+        //{ type: 'video', id: 'FhwLNERl1AY', name: "J Dilla - Kamaal (Instrumental) (Extended)" },
+        //{ type: 'video', id: 'vO2nWXCVt6o', name: "J Dilla - In Space (15 Minute Vinyl Version)" },
+        //{ type: 'video', id: 'q8WMhklSumg', name: "J Dilla's Colors of You | Park Nights" },
+        //{ type: 'video', id: 'w72Dkdcn45o', name: "J Dilla - Get Dis Money (Instrumental) (Extended)" },
+        //{ type: 'video', id: 'R6UucC-r7wA', name: "Arlekin Ulmikundura, Quasimoto/Madlib, J Dilla - Walking with Lord Quas part.1" },
+        //{ type: 'video', id: '7ZS91gws7oQ', name: "Quasimoto n’ friends but its chill af | Lofi Mix | CHILLAF | " },
     ];
     const REAL_RAP_SOURCES = [
         // Playlists
@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'playlist', id: 'PL2915EAE02B0C2B64', name: "Classic Rap" },
         { type: 'playlist', id: 'PLBTG-Sh12vzumoFYiZ04UvNo8JnCnGAZu', name: "OGDonNinja" },
         // Videos
-        { type: 'video', id: 'ImSoA_fAVL4', name: "Nas - Memory Lane (Sittin' in da Park)" },
-        { type: 'video', id: '8FGuJdxldkI', name: "MF DOOM X MR. FANTASTIK - UNRELEASED TRACK (PROD. MADLIB)" },
-        { type: 'video', id: 'yoW21AZltDo', name: "9th Wonder - You Girl Soul (Instrumental)" },
-        { type: 'video', id: 'pkXDZQrebi4', name: "O.G.C. - God Don't Like Ugly (Instrumental)" },
-        { type: 'video', id: 'xUDNMmbYtkw', name: "O.G.C. - No Fear" },
-        { type: 'video', id: 'm_bOjWb0KeI', name: "Smif-N-Wessun: NPR Music Tiny Desk Concert" },
-        { type: 'video', id: 'ubWL8VAPoYw', name: "Snoop Dogg - Riders on the Storm (feat. The Doors)" },
-        { type: 'video', id: 'LpsKdWOpc3A', name: "COLASO - MY THOUGHTS ARE EXTRAORDINARY" },
+        //{ type: 'video', id: 'ImSoA_fAVL4', name: "Nas - Memory Lane (Sittin' in da Park)" },
+        //{ type: 'video', id: '8FGuJdxldkI', name: "MF DOOM X MR. FANTASTIK - UNRELEASED TRACK (PROD. MADLIB)" },
+        //{ type: 'video', id: 'yoW21AZltDo', name: "9th Wonder - You Girl Soul (Instrumental)" },
+        //{ type: 'video', id: 'pkXDZQrebi4', name: "O.G.C. - God Don't Like Ugly (Instrumental)" },
+        //{ type: 'video', id: 'xUDNMmbYtkw', name: "O.G.C. - No Fear" },
+        //{ type: 'video', id: 'm_bOjWb0KeI', name: "Smif-N-Wessun: NPR Music Tiny Desk Concert" },
+        //{ type: 'video', id: 'ubWL8VAPoYw', name: "Snoop Dogg - Riders on the Storm (feat. The Doors)" },
+        //{ type: 'video', id: 'LpsKdWOpc3A', name: "COLASO - MY THOUGHTS ARE EXTRAORDINARY" },
         
     ];
 
