@@ -128,74 +128,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 2. Playback Logic ---
-    function playRandomSource(sourceArray) {
-        if (!isPlayerReady || sourceArray.length === 0) {
-             console.warn("Player not ready or source array empty.");
-             return;
-        }
-
-        const randomIndex = Math.floor(Math.random() * sourceArray.length);
-        const source = sourceArray[randomIndex];
-
-        console.log("Loading source:", source);
-
-        if (source.type === 'playlist') {
-            player.loadPlaylist({
-                list: source.id,
-                listType: 'playlist',
-                index: 0, // <<<<< COMMA ADDED HERE
-                suggestedQuality: 'small' // Optimize for background/small screen
-            });
-             // ** Attempt to enable shuffle **
-             // Use a small timeout just in case the player needs a moment
-            setTimeout(() => {
-                if (player && player.setShuffle) {
-                    player.setShuffle(true);
-                     // Optional: Automatically play the *next* video in the now shuffled list
-                     // This often works better than relying on index 0 after shuffle.
-                     player.nextVideo();
-                     console.log("Playlist loaded, shuffle enabled, playing next.");
-                 }
-             }, 500); // 500ms delay, adjust if needed
-
-        } else if (source.type === 'video') {
-            player.loadVideoById({
-                videoId: source.id,
-                suggestedQuality: 'small'
-             });
-            // Ensure shuffle is off for single videos
-            if (player && player.setShuffle) { // Check if function exists
-                 player.setShuffle(false);
-                 console.log("Single video loaded, shuffle disabled.");
-            }
-        }
-        // Update display immediately (optional, state change will also update)
-        trackTitleElement.textContent = source.name || "Loading...";
-        trackArtistElement.textContent = source.type === 'playlist' ? "Playlist" : "Track";
-        progressBar.style.width = '0%';
+function playRandomSource(sourceArray) {
+    if (!isPlayerReady || sourceArray.length === 0) {
+         console.warn("Player not ready or source array empty.");
+         return;
     }
 
-    // Modify playSpecificSource to ensure shuffle is OFF
-    function playSpecificSource(type, id, name = "Loading...") {
-        if (!isPlayerReady) { console.warn("Player not ready."); return; } // Simplified return
-        console.log(`Loading specific source: ${type} - ${id}`);
+    const randomIndex = Math.floor(Math.random() * sourceArray.length);
+    const source = sourceArray[randomIndex];
 
-        trackTitleElement.textContent = name;
-        trackArtistElement.textContent = type === 'playlist' ? "Playlist" : "Track";
-        progressBar.style.width = '0%';
+    console.log("Loading source:", source);
 
-        // ** Crucially, ensure shuffle is OFF for pinned items **
-        if (player && player.setShuffle) {
-            player.setShuffle(false);
-            console.log("Loading pinned item, shuffle disabled.");
-        }
+    // Update display immediately
+    trackTitleElement.textContent = source.name || "Loading...";
+    trackArtistElement.textContent = source.type === 'playlist' ? "Playlist" : "Track";
+    progressBar.style.width = '0%';
 
-        if (type === 'playlist') {
-            player.loadPlaylist({ list: id, listType: 'playlist', index: 0, suggestedQuality: 'small' });
-        } else if (type === 'video') {
-            player.loadVideoById({ videoId: id, suggestedQuality: 'small' });
-        }
+    // Ensure shuffle is OFF when starting randomly like this initially
+    if (player && player.setShuffle) {
+        player.setShuffle(false);
     }
+
+    if (source.type === 'playlist') {
+        // ** NEW: Calculate a random start index within the playlist **
+        // Note: We don't know the exact playlist length, so pick a reasonable max
+        // Larger playlists might need a bigger number. Let's use 50 for now.
+        const randomTrackIndex = Math.floor(Math.random() * 50); // Start within first 50 tracks
+        console.log(`Attempting to start playlist at index: ${randomTrackIndex}`);
+
+        player.loadPlaylist({
+            list: source.id,
+            listType: 'playlist',
+            index: randomTrackIndex, // Start at the random index
+            suggestedQuality: 'small'
+        });
+        // We are NOT enabling shuffle here, playback will be sequential from the random start.
+        // You could add a separate Shuffle button if you want that later.
+
+    } else if (source.type === 'video') {
+        player.loadVideoById({
+            videoId: source.id,
+            suggestedQuality: 'small'
+         });
+    }
+}
 
     // --- 3. UI Updates ---
     function updateTrackDisplay() {
