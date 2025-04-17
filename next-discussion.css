@@ -413,6 +413,65 @@
 .color-option.pink   { background: linear-gradient(to bottom, #f8c8dc, #f1a1c0); }
 .color-option.black  { background: linear-gradient(to bottom, #333, #111); }
 
+/* --- Archive Section --- */
+.archive-section {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(0,0,0,0.1); /* Separator line */
+    text-align: center;
+}
+
+body.dark-mode .archive-section {
+     border-top-color: var(--dark-border-color);
+}
+
+.archive-label {
+    font-size: 0.8rem;
+    color: #555;
+    font-weight: 500;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+ body.dark-mode .archive-label {
+    color: var(--dark-subtle-text);
+ }
+
+.archive-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.archive-button {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.75rem;
+    font-family: var(--font-body);
+    color: #333;
+    cursor: pointer;
+    transition: all var(--transition-speed-fast) var(--transition-timing);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.archive-button:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(0,0,0,0.2);
+    transform: translateY(-1px);
+}
+
+body.dark-mode .archive-button {
+     background-color: rgba(255, 255, 255, 0.1);
+     border-color: var(--dark-border-color);
+     color: var(--dark-text-color);
+}
+ body.dark-mode .archive-button:hover {
+     background-color: rgba(255, 255, 255, 0.2);
+     border-color: #777;
+ }
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 767px) {
