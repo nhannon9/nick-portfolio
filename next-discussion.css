@@ -147,6 +147,16 @@
     color: #007aff; /* Indicate active state */
 }
 
+.player-control-button .rate-indicator {
+    font-size: 0.7em; /* Smaller text */
+    margin-left: 4px;
+    vertical-align: middle; /* Align text with icon */
+    display: inline-block; /* Prevent wrapping */
+    font-weight: bold;
+    min-width: 2em; /* Give it some space */
+    text-align: center;
+}
+
 
 .player-footer {
     /* Reuse styles from main site, maybe simplify */
