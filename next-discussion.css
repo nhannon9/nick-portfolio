@@ -118,10 +118,41 @@
     text-decoration: none;
 }
 .player-nav {
-    font-family: var(--font-body);
+    display: flex;          /* Use flexbox for the nav area itself */
+    justify-content: center;/* Center the title container horizontally */
+    align-items: center;    /* Center vertically */
+    flex-grow: 1;           /* Allow it to take available space */
+}
+.player-title-container {
+    display: flex;          /* Use flexbox *inside* the container */
+    align-items: center;    /* Vertically align logo and text */
+    gap: var(--spacing-sm); /* Space between logo and text */
+}
+.player-title-container span {
+    font-family: var(--font-body); /* Apply font styling to the span */
     font-weight: 500;
     color: #555;
+    font-size: 1.1rem; /* Adjust size as needed */
 }
+/* Style the Spinning Logo (ensure it's using the ID selector) */
+#spinning-logo {
+    display: block; /* Or inline-block */
+    width: 35px; /* Adjust size as needed */
+    height: 35px;
+    border-radius: 50%; /* Make it round */
+    animation: spin 15s linear infinite; /* Adjust duration */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+#spinning-logo:hover {
+    animation-play-state: paused; /* Pause spin on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+/* Define the spin animation (if not already defined) */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 .player-header-utils {
      display: flex;
      align-items: center;
@@ -595,4 +626,12 @@ body.dark-mode .color-selector .selector-label {
      box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.6);
 } */
 
+body.dark-mode .player-title-container span {
+    color: var(--dark-subtle-text); /* Adjust text color */
+}
+
+/* Ensure dark mode doesn't break image (usually fine) */
+body.dark-mode #spinning-logo {
+    /* No specific styles needed unless you want filter/opacity */
+}
     
