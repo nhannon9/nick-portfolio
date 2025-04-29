@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'playlist', id: 'PLrbFUdbfepXU-5WU0HeCe_d56loyH9OdP', name: "Heltah Skeltah - Nocturnal" },
         { type: 'playlist', id: 'PL2915EAE02B0C2B64', name: "Classic Rap" },
         { type: 'playlist', id: 'PLBTG-Sh12vzumoFYiZ04UvNo8JnCnGAZu', name: "OGDonNinja" },
+        { type: 'playlist', id: 'PLdnyHn0Nk3-bnrRbAQC5lDHCHsQgguVuW', name: "OGDonNinja" },
         // Videos
         //{ type: 'video', id: 'ImSoA_fAVL4', name: "Nas - Memory Lane (Sittin' in da Park)" },
         //{ type: 'video', id: '8FGuJdxldkI', name: "MF DOOM X MR. FANTASTIK - UNRELEASED TRACK (PROD. MADLIB)" },
