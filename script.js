@@ -206,4 +206,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupMusicPlayer();
 
+    // --- 7. IT Coworker Easter Egg (F12 Console) ---
+    console.log(
+        "%c    _   ___      __    __  __\n   / | / (_)____/ /__ / / / /___ _____  ____  ____  ____\n  /  |/ / / ___/ //_// /_/ / __ `/ __ \\/ __ \\/ __ \\/ __ \\\n / /|  / / /__/ ,<  / __  / /_/ / / / / / / / /_/ / / / /\n/_/ |_/_/\\___/_/|_|/_/ /_/\\__,_/_/ /_/_/ /_/\\____/_/ /_/ ", 
+        "color: #6a11cb; font-weight: bold;"
+    );
+    console.log("%cWelcome to the source code! If you're snooping around here, we should talk. 🚀", "color: #facc15; font-size: 14px;");
+    console.log("Type `whoami()` and hit enter to discover more.");
+
+    window.whoami = function() {
+        return "Nick Hannon - Digital Craftsman, IT Professional, and Creative Explorer. Let's build something.";
+    };
+
 }); // End DOMContentLoaded
