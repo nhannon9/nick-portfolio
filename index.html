@@ -15,6 +15,51 @@
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Overrides and New Interactive Styles -->
+    <style>
+        /* 1. Shrink Hero Section */
+        .hero {
+            min-height: 60vh !important;
+            padding-top: 140px !important;
+            padding-bottom: 60px !important;
+        }
+
+        /* 2. Interactive Placeholder Icon Styling */
+        .placeholder-replacement {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+            border-radius: 12px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            color: #52525b;
+            transition: all 0.3s ease;
+        }
+        .placeholder-replacement i {
+            font-size: 6rem;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+        }
+        .placeholder-replacement:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .placeholder-replacement:hover i { transform: scale(1.15); }
+        .placeholder-replacement.tech:hover i { color: #0ea5e9; text-shadow: 0 0 20px rgba(14,165,233,0.4); }
+        .placeholder-replacement.youtube:hover i { color: #ef4444; text-shadow: 0 0 20px rgba(239,68,68,0.4); }
+        
+        /* 3. Typing Effect Cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.1em;
+            background-color: currentColor;
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
 </head>
 <body>
 
@@ -61,7 +106,8 @@
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 id="hero-heading">Digital Atelier</h1>
-                <p class="subtitle">Nick Hannon's curated collection of technology ventures, creative explorations, and digital playgrounds.</p>
+                <!-- Replaced static text with interactive typewriter element -->
+                <p class="subtitle"><span id="typewriter-text"></span><span class="typing-cursor"></span></p>
                 <a href="#interests-start" class="cta-button hero-cta">Explore Interests <i class="fas fa-arrow-down"></i></a>
             </div>
         </section>
@@ -85,7 +131,10 @@
                         </a>
                     </div>
                     <div class="split-visual tech-visual">
-                        <img src="images/placeholder-tech.jpg" alt="Abstract technology visualization">
+                        <!-- Replaced placeholder image with an interactive icon block -->
+                        <div class="placeholder-replacement tech">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -141,7 +190,10 @@
             <section class="interest-section youtube-section reveal-on-scroll" id="youtube" aria-labelledby="youtube-heading">
                 <div class="section-container split-layout reversed">
                      <div class="split-visual youtube-visual">
-                         <img src="images/placeholder-youtube.jpg" alt="YouTube channel visual representation">
+                         <!-- Replaced placeholder image with an interactive icon block -->
+                         <div class="placeholder-replacement youtube">
+                             <i class="fab fa-youtube"></i>
+                         </div>
                      </div>
                     <div class="split-content text-content">
                         <div class="icon-badge youtube-icon-badge"><i class="fab fa-youtube"></i></div>
@@ -235,6 +287,26 @@
         Your browser does not support the audio element.
     </audio>
 
+    <!-- Interactive Typewriter Effect Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const text = "Nick Hannon's curated collection of technology ventures, creative explorations, and digital playgrounds.";
+            const typingSpeed = 35; // speed in milliseconds per character
+            const element = document.getElementById("typewriter-text");
+            let i = 0;
+
+            if (element) {
+                function typeWriter() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, typingSpeed);
+                    }
+                }
+                setTimeout(typeWriter, 600); // Start effect after a short delay
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
