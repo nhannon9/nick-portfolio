@@ -374,6 +374,8 @@ img, svg, video {
     align-items: center;
     border-top: 1px solid rgba(255,255,255,0.05);
     border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    z-index: 10;
 }
 .tech-marquee {
     display: flex;
@@ -398,7 +400,6 @@ img, svg, video {
 #interests-start {
     display: block;
     height: 0;
-    margin-top: calc(-1 * var(--header-height)); /* Offset for fixed header */
     visibility: hidden;
 }
 

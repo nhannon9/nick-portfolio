@@ -46,9 +46,9 @@
                 </div>
                 <div class="social-links-header" aria-label="Social Media Links">
                      <!-- Keep social links consistent -->
-                     <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                     <a href="#" aria-label="Discord" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
-                     <a href="#" aria-label="SoundCloud" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+                     <a href="https://github.com/nhannon9" aria-label="GitHub" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                     <a href="https://discord.com/users/153665915806810112" aria-label="Discord" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
+                     <a href="https://soundcloud.com/soeasydelta/tracks" aria-label="SoundCloud" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
                 </div>
             </div>
         </div>
@@ -93,22 +93,22 @@
                 </figure>
                 <header class="post-header">
                     <!-- Link to the actual post page eventually -->
-                    <h2 class="post-title"><a href="#">> Initiate Deep Dive: Retro Emulation Matrix</a></h2>
+                    <h2 class="post-title"><a href="#">> Critical Review: The "Copy Fail" Linux Exploit</a></h2>
                     <p class="post-meta">
-                        <span class="meta-label">[Timestamp]:</span> <time datetime="2023-10-27">2023.10.27</time>
+                        <span class="meta-label">[Timestamp]:</span> <time datetime="2023-11-02">2023.11.02</time>
                         <span class="meta-separator">||</span>
-                        <span class="meta-label">[Sector]:</span> <span class="post-category">// Tech_Archive</span>
+                        <span class="meta-label">[Sector]:</span> <span class="post-category">// Sec_Ops</span>
                     </p>
                 </header>
                 <div class="post-content">
-                    <p>SYSTEM.LOG: Engaging retro-simulation protocols. Objective: Construct dedicated emulation node. Process deviated from initial parameters. Encountered anomalies in Pi subroutines and frontend configuration matrix (EmulationStation). ROM data stream integrity required verification...</p>
-                    <p>HARDWARE_MANIFEST:</p>
+                    <p>SYSTEM.LOG: Analyzing the recently surfaced "copy fail" exploit targeting Linux kernel I/O subsystems. It's surprisingly flying under the radar in most sysadmin circles right now, despite its potential impact on file integrity and local privilege escalation.</p>
+                    <p>The vulnerability essentially exploits a race condition during standard copy operations (specifically relating to how the kernel handles `copy_file_range` system calls and memory-mapped files). When an attacker intentionally induces a copy failure at the exact right byte boundary, the kernel can mishandle the file descriptors, leaving fragments in memory that shouldn't be accessible to a standard user.</p>
                     <ul>
-                        <li>Node_Core: Raspberry Pi 4 Model B</li>
-                        <li>Interface: RetroPie / EmulationStation Shell</li>
-                        <li>Input_Devices: [Specify Controller Models]</li>
+                        <li>Vector: Local Privilege Escalation (LPE) via memory exhaustion/race condition.</li>
+                        <li>Trigger: Malformed I/O splice requests during large block transfers.</li>
+                        <li>Mitigation: Patching to the latest stable kernel branch; monitoring `dmesg` for unusual splice failures.</li>
                     </ul>
-                    <p>ANALYSIS: Unexpected complexity suggests potential for system optimization. Digital artifact preservation protocols under review. Input requested from other operators.</p>
+                    <p>ANALYSIS: Relying purely on standard endpoint detection is a blindspot here because the initial trigger mimics a generic hardware/filesystem fault. We need to be discussing this more actively before it gets weaponized into automated exploit kits. Check your environments and stay patched.</p>
                     <p>// Transmission Complete</p>
                 </div>
             </article>
@@ -119,20 +119,21 @@
             <article class="blog-post reveal-on-scroll">
                 <!-- No feature image for this post example -->
                 <header class="post-header">
-                    <h2 class="post-title"><a href="#">> Query: Framework Signal-to-Noise Ratio</a></h2>
+                    <h2 class="post-title"><a href="#">> AD Architecture: Reducing the Kerberoasting Attack Surface</a></h2>
                      <p class="post-meta">
                         <span class="meta-label">[Timestamp]:</span> <time datetime="2023-10-15">2023.10.15</time>
                         <span class="meta-separator">||</span>
-                        <span class="meta-label">[Sector]:</span> <span class="post-category">// Dev_Cogitations</span>
+                        <span class="meta-label">[Sector]:</span> <span class="post-category">// SysAdmin_Logs</span>
                     </p>
                 </header>
                 <div class="post-content">
-                    <p>ALERT: High-frequency energy signature detected - new framework broadcast identified. Querying efficiency vs. novelty index. Observed pattern: rapid signal decay, high resource consumption during adoption phase.</p>
-                    <p>Hypothesis: Optimization potential may be overestimated due to signal amplification (hype). Recommend resource allocation based on core function compatibility and long-term stability protocols.</p>
+                    <p>ALERT: Reviewing legacy Active Directory environments. A recurring theme I see when doing infrastructure health checks is the sheer volume of over-privileged service accounts tied to Service Principal Names (SPNs).</p>
+                    <p>Kerberoasting remains one of the most effective ways for an attacker to escalate privileges laterally. Standard audits often focus on stale users or disabled accounts, but completely miss active service accounts with passwords that haven't been rotated since 2015.</p>
                     <blockquote>
-                       > Prioritize core logic integrity. Adapt protocols based on necessity, not signal strength. Maintain operational efficiency. Acknowledge signal, filter noise. // Directive Alpha-7
+                       > Action Item: Implement Managed Service Accounts (gMSAs) wherever possible. For legacy applications that flat-out refuse to support gMSAs, enforce a 30-character minimum password length and rotate them annually. // Directive Beta-4
                     </blockquote>
-                    <p>// End Query</p>
+                    <p>Automation is your friend here. Scripting an audit to dump SPNs and check password age should be a standard monthly procedure, not a once-a-year compliance checkbox. Don't leave low-hanging fruit for the red team.</p>
+                    <p>// End Log</p>
                 </div>
             </article>
             <!-- === END EXAMPLE POST 2 === -->
@@ -151,9 +152,9 @@
             </div>
             <div class="footer-social">
                 <span class="footer-label">[Connect]:</span>
-                 <a href="#" aria-label="GitHub" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                 <a href="#" aria-label="Discord" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
-                 <a href="#" aria-label="SoundCloud" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+                 <a href="https://github.com/nhannon9" aria-label="GitHub" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                 <a href="https://discord.com/users/153665915806810112" aria-label="Discord" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
+                 <a href="https://soundcloud.com/soeasydelta/tracks" aria-label="SoundCloud" target="_blank" rel="noopener noreferrer" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
             </div>
         </div>
     </footer>
