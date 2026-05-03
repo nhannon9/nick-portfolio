@@ -498,6 +498,7 @@ img, svg, video {
      .split-layout .split-visual,
     .split-layout.reversed .split-visual {
          order: 0;
+         width: 100%; /* Ensure it spans up to max-width to fix centering */
          max-width: 500px; /* Limit image width when stacked */
          margin: 0 auto var(--spacing-xl) auto;
     }

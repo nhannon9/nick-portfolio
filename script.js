@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Configuration ---
     const MUSIC_TRACKS = [
-        { name: "PS2 Ambience", url: "" }, // <-- REPLACE "" with actual URL
-        { name: "DS Menu Loop", url: "" }, // <-- REPLACE "" with actual URL
-        { name: "Halo 3 Main Theme", url: "" }, // <-- REPLACE "" with actual URL
-        { name: "Assassin's Creed Ezio's Family", url: "" }, // <-- REPLACE "" with actual URL
+        { name: "PS2 Ambience", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" }, // <-- Example URL added so button shows up
+        { name: "DS Menu Loop", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }, // <-- REPLACE with actual URL
+        { name: "Halo 3 Main Theme", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }, // <-- REPLACE with actual URL
+        { name: "Assassin's Creed Ezio's Family", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" }, // <-- REPLACE with actual URL
         // Add more tracks as needed { name: "...", url: "..." }
     ];
     const SCROLL_REVEAL_OFFSET = "-100px"; // How far from bottom edge before revealing
