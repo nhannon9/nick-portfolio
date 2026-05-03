@@ -2,208 +2,294 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Configuration ---
     const MUSIC_TRACKS = [
-        { name: "PS2 Ambience", url: "" }, // <-- REPLACE "" with actual URL
-        { name: "DS Menu Loop", url: "" }, // <-- REPLACE "" with actual URL
-        { name: "Halo 3 Main Theme", url: "" }, // <-- REPLACE "" with actual URL
-        { name: "Assassin's Creed Ezio's Family", url: "" }, // <-- REPLACE "" with actual URL
-        // Add more tracks as needed { name: "...", url: "..." }
+        { name: "J Dilla - Donuts (Outro)", url: "audio/track1.mp3" }, // Replace with actual paths
+        { name: "Madlib - Slim's Return", url: "audio/track2.mp3" },
+        { name: "PS2 Menu Ambience", url: "audio/track3.mp3" }
     ];
-    const SCROLL_REVEAL_OFFSET = "-100px"; // How far from bottom edge before revealing
-    const BACK_TO_TOP_THRESHOLD = 300; // Pixels scrolled before button appears
+    const SCROLL_REVEAL_OFFSET = "-50px"; 
+    const BACK_TO_TOP_THRESHOLD = 400; 
 
     // --- Element Selectors ---
+    const body = document.body;
+    const header = document.querySelector('.site-header');
+    const customCursor = document.getElementById('custom-cursor');
+    const cursorHoverTargets = document.querySelectorAll('[data-cursor="hover"]');
+    const themeToggleButton = document.getElementById('theme-toggle-button');
+    const htmlElement = document.documentElement;
+    
     const dateTimeWidget = {
         dateElement: document.getElementById('date'),
         timeElement: document.getElementById('time')
     };
     const yearSpan = document.getElementById('year');
-    const header = document.querySelector('.site-header');
-    const scrollLinks = document.querySelectorAll('a[href^="#"]');
+    
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
     const backToTopButton = document.querySelector('.back-to-top');
+    
     const musicToggleButton = document.getElementById('music-toggle-button');
     const backgroundAudio = document.getElementById('background-audio');
 
-    let currentTrackIndex = 0;
-    let isMusicPlaying = false;
+    // --- 1. Custom Magnetic Cursor ---
+    if (window.matchMedia("(pointer: fine)").matches) {
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
 
-    // --- 1. Time and Date Widget ---
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Smooth follow animation
+        function animateCursor() {
+            let distX = mouseX - cursorX;
+            let distY = mouseY - cursorY;
+            cursorX += distX * 0.2; // Interpolation for smoothness
+            cursorY += distY * 0.2;
+            
+            customCursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover states
+        cursorHoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => customCursor.classList.add('hover'));
+            target.addEventListener('mouseleave', () => customCursor.classList.remove('hover'));
+        });
+    } else {
+        // Disable on touch devices
+        if(customCursor) customCursor.style.display = 'none';
+    }
+
+    // --- 2. Theme Toggle (Dark/Light) ---
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    htmlElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggleButton.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        const icon = themeToggleButton.querySelector('i');
+        if (theme === 'light') {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
+    }
+
+    // --- 3. Time and Date Widget ---
     function updateDateTime() {
         if (!dateTimeWidget.dateElement || !dateTimeWidget.timeElement) return;
 
         const now = new Date();
-        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-        const timeOptions = { hour: 'numeric', minute: '2-digit', /* second: '2-digit', */ hour12: true }; // Seconds removed for less jitter
+        const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+        const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true }; 
 
         dateTimeWidget.dateElement.textContent = now.toLocaleDateString(undefined, dateOptions);
         dateTimeWidget.timeElement.textContent = now.toLocaleTimeString(undefined, timeOptions);
     }
+    updateDateTime();
+    setInterval(updateDateTime, 30000); 
 
-    // --- 2. Copyright Year ---
-    function setCopyrightYear() {
-        if (yearSpan) {
-            yearSpan.textContent = new Date().getFullYear();
-        }
-    }
+    // --- 4. Copyright Year ---
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-    // --- 3. Smooth Scrolling ---
-    function smoothScrollHandler(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
+    // --- 5. Smooth Scrolling & Header Hide ---
+    let lastScrollY = window.scrollY;
 
-        // Special case for back-to-top button or links to "#"
-        if (targetId === '#') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return;
-        }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            
+            if (targetId === '#') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
 
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            const headerHeight = header ? header.offsetHeight : 0;
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const headerHeight = header ? header.offsetHeight : 0;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-        } else {
-            console.warn(`Smooth scroll target not found: ${targetId}`);
-        }
-    }
+                window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            }
+        });
+    });
 
-    // --- 4. Scroll Reveal Animation ---
+    // --- 6. Scroll Reveal & UI Visibility ---
     function setupScrollReveal() {
-        if (!('IntersectionObserver' in window)) {
-            console.warn("IntersectionObserver not supported, scroll animations disabled.");
-            revealElements.forEach(el => el.classList.add('is-visible')); // Show elements immediately
-            return;
-        }
-
         const observerOptions = {
-            root: null, // relative to viewport
+            root: null,
             rootMargin: `0px 0px ${SCROLL_REVEAL_OFFSET} 0px`,
-            threshold: 0.1 // Trigger when 10% is visible
+            threshold: 0.1
         };
 
-        const observerCallback = (entries, observer) => {
+        const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Stop observing once visible
+                    obs.unobserve(entry.target); 
                 }
             });
-        };
+        }, observerOptions);
 
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
         revealElements.forEach(el => observer.observe(el));
     }
+    setupScrollReveal();
 
-    // --- 5. Back to Top Button Visibility & Click ---
-    function handleScroll() {
-        // Back to Top Button Visibility
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+
+        // Header hide/show on scroll direction
+        if (currentScrollY > header.offsetHeight && currentScrollY > lastScrollY) {
+            header.classList.add('scrolled-up');
+        } else {
+            header.classList.remove('scrolled-up');
+        }
+        lastScrollY = currentScrollY;
+
+        // Back to top visibility
         if (backToTopButton) {
-            if (window.pageYOffset > BACK_TO_TOP_THRESHOLD) {
+            if (currentScrollY > BACK_TO_TOP_THRESHOLD) {
                 backToTopButton.classList.add('visible');
             } else {
                 backToTopButton.classList.remove('visible');
             }
         }
+    }, { passive: true });
 
-        // Add other scroll-based effects here if needed (e.g., header shrinking)
-    }
+    // --- 7. Music Playback ---
+    let currentTrackIndex = 0;
+    let isMusicPlaying = false;
 
-    // --- 6. Music Playback ---
-    function setupMusicPlayer() {
-        if (!musicToggleButton || !backgroundAudio || MUSIC_TRACKS.length === 0) {
-            console.warn("Music player elements not found or no tracks defined.");
-            if(musicToggleButton) musicToggleButton.style.display = 'none'; // Hide button if unusable
-            return;
-        }
-
-        // Ensure URLs are valid before proceeding
-        const validTracks = MUSIC_TRACKS.filter(track => track.url && typeof track.url === 'string' && track.url.trim() !== '');
-        if (validTracks.length === 0) {
-            console.error("No valid music track URLs provided.");
-             if(musicToggleButton) musicToggleButton.style.display = 'none';
-            return;
-        }
-
-        // Load the first valid track initially (but don't play)
-        backgroundAudio.src = validTracks[currentTrackIndex].url;
+    if (musicToggleButton && backgroundAudio && MUSIC_TRACKS.length > 0) {
+        backgroundAudio.src = MUSIC_TRACKS[0].url;
 
         musicToggleButton.addEventListener('click', () => {
             if (isMusicPlaying) {
                 backgroundAudio.pause();
             } else {
-                // Ensure src is set before playing, especially if cycling
-                 if (!backgroundAudio.src || backgroundAudio.src !== validTracks[currentTrackIndex].url) {
-                    backgroundAudio.src = validTracks[currentTrackIndex].url;
-                 }
-                // Play returns a Promise, handle potential errors (like browser restrictions)
-                backgroundAudio.play().catch(error => {
-                    console.error("Audio playback failed:", error);
-                    // Optionally provide user feedback here
-                    alert("Browser prevented audio playback. You may need to interact with the page first.");
-                    // Reset state if playback fails immediately
+                if (!backgroundAudio.src || !backgroundAudio.src.includes(MUSIC_TRACKS[currentTrackIndex].url)) {
+                    backgroundAudio.src = MUSIC_TRACKS[currentTrackIndex].url;
+                }
+                backgroundAudio.play().catch(err => {
+                    console.error("Playback failed. Interaction required.", err);
                     setMusicState(false);
                 });
             }
         });
 
-        // Update button state when audio actually plays or pauses
         backgroundAudio.addEventListener('play', () => setMusicState(true));
         backgroundAudio.addEventListener('pause', () => setMusicState(false));
 
-        // Handle cycling to the next track when one ends (if loop is not set on audio element)
-        // If 'loop' attribute IS set on <audio>, this 'ended' event might not be needed
-        // unless you want to explicitly cycle tracks instead of looping the same one.
         backgroundAudio.addEventListener('ended', () => {
-            currentTrackIndex = (currentTrackIndex + 1) % validTracks.length;
-            backgroundAudio.src = validTracks[currentTrackIndex].url;
-            backgroundAudio.play().catch(error => console.error("Audio playback failed on track end:", error));
-             console.log(`Playing next track: ${validTracks[currentTrackIndex].name}`);
+            currentTrackIndex = (currentTrackIndex + 1) % MUSIC_TRACKS.length;
+            backgroundAudio.src = MUSIC_TRACKS[currentTrackIndex].url;
+            backgroundAudio.play();
         });
     }
 
     function setMusicState(playing) {
         isMusicPlaying = playing;
-        if (musicToggleButton) {
-            const icon = musicToggleButton.querySelector('i');
-            if (playing) {
-                musicToggleButton.classList.add('playing');
-                musicToggleButton.setAttribute('aria-label', 'Pause Background Music');
-                musicToggleButton.setAttribute('title', 'Pause Background Music');
-                if (icon) icon.className = 'fas fa-pause';
-            } else {
-                musicToggleButton.classList.remove('playing');
-                musicToggleButton.setAttribute('aria-label', 'Play Background Music');
-                 musicToggleButton.setAttribute('title', 'Play Background Music');
-                if (icon) icon.className = 'fas fa-play';
-            }
+        const icon = musicToggleButton.querySelector('i');
+        if (playing) {
+            musicToggleButton.classList.add('playing');
+            if (icon) icon.className = 'fas fa-pause';
+        } else {
+            musicToggleButton.classList.remove('playing');
+            if (icon) icon.className = 'fas fa-play';
         }
     }
 
+    // --- 8. Sysadmin Terminal Easter Egg ---
+    const easterEggSequence = ['s', 'y', 's', 'f', 'x'];
+    let sequencePosition = 0;
+    const modal = document.getElementById('sysadmin-modal');
+    const terminalOutput = document.getElementById('terminal-output');
 
-    // --- Initialization ---
-    updateDateTime(); // Initial call
-    setInterval(updateDateTime, 30000); // Update time every 30 seconds (less frequent than 1s)
+    document.addEventListener('keydown', (e) => {
+        const key = e.key.toLowerCase();
+        
+        if (key === easterEggSequence[sequencePosition]) {
+            sequencePosition++;
+            if (sequencePosition === easterEggSequence.length) {
+                triggerEasterEgg();
+                sequencePosition = 0; // Reset
+            }
+        } else {
+            sequencePosition = 0; // Reset on wrong key
+        }
+    });
 
-    setCopyrightYear();
+    function triggerEasterEgg() {
+        if(modal.hasAttribute('open')) return;
+        
+        modal.showModal();
+        body.style.overflow = 'hidden'; // Lock background scroll
 
-    scrollLinks.forEach(link => link.addEventListener('click', smoothScrollHandler));
+        // Wait for CSS typing animation to finish (approx 1.5s), then print fetch
+        setTimeout(() => {
+            const fetchOutput = document.createElement('div');
+            fetchOutput.innerHTML = `
+<pre style="color: #d4d4d4; margin-top: 20px; font-size: 0.85rem;">
+       _,met$$$$$gg.          <span style="color: #60a5fa; font-weight: bold;">admin@sysfx-core</span>
+    ,g$$$$$$$$$$$$$$$P.       ----------------
+  ,g$$P"     """Y$$.".        <span style="color: #4ade80;">OS</span>: Debian GNU/Linux 12 (bookworm) x86_64
+ ,$$P'              \`$$$.     <span style="color: #4ade80;">Host</span>: SysFX Infrastructure Node [Clinton_CT]
+',$$P       ,ggs.     \`$$b:   <span style="color: #4ade80;">Kernel</span>: 6.1.0-18-amd64
+\`d$$'     ,$P"'   .    $$$    <span style="color: #4ade80;">Uptime</span>: 45 days, 12 hours, 3 mins
+ $$P      d$'     ,    $$P    <span style="color: #4ade80;">Packages</span>: 1402 (dpkg)
+ $$:      $$.   -    ,d$$'    <span style="color: #4ade80;">Shell</span>: bash 5.2.15
+ $$;      Y$b._   _,d$P'      <span style="color: #4ade80;">CPU</span>: Intel Xeon E-2388G (16) @ 5.100GHz
+ Y$$.    \`.\`"Y$$$$P"'         <span style="color: #4ade80;">Memory</span>: 16384MiB / 64328MiB
+ \`$$b      "-.__              <span style="color: #4ade80;">Docker</span>: 14 containers running
+  \`Y$$                        
+   \`Y$$.                      <span style="color: #60a5fa;">admin@sysfx-core:~$</span> <span class="blinking-cursor" style="display:inline-block; width: 8px; height: 15px; background: #4ade80; animation: blink 1s step-end infinite; vertical-align: middle;"></span>
+</pre>
+            `;
+            terminalOutput.appendChild(fetchOutput);
+            terminalOutput.scrollTop = terminalOutput.scrollHeight; // Scroll to bottom
+        }, 1800);
+    }
 
-    setupScrollReveal();
+    // Close modal on click outside or Escape key
+    modal.addEventListener('click', (e) => {
+        const dialogDimensions = modal.getBoundingClientRect()
+        if (
+            e.clientX < dialogDimensions.left ||
+            e.clientX > dialogDimensions.right ||
+            e.clientY < dialogDimensions.top ||
+            e.clientY > dialogDimensions.bottom
+        ) {
+            closeModal();
+        }
+    });
 
-    window.addEventListener('scroll', handleScroll, { passive: true }); // Use passive listener for performance
-    handleScroll(); // Initial check in case page loads already scrolled
+    modal.addEventListener('close', closeModal);
 
-    // Back to top click listener (already covered by smoothScrollHandler if href="#")
-    // If it has a different href, add a specific listener:
-    // if(backToTopButton && backToTopButton.getAttribute('href') !== '#') {
-    //    backToTopButton.addEventListener('click', (e) => { /* specific logic */ });
-    // }
-
-    setupMusicPlayer();
+    function closeModal() {
+        modal.close();
+        body.style.overflow = ''; // Unlock scroll
+        
+        // Reset terminal contents for next time
+        setTimeout(() => {
+            terminalOutput.innerHTML = `
+            <div class="sys-login">
+                <p class="login-time">Last login: Sat May 2 21:30:00 2026</p>
+                <p class="ping-status">Establishing secure connection to Clinton_CT node... <span class="success">OK</span></p>
+                <br>
+                <p class="prompt">admin@sysfx-core:~$ <span class="typing-animation">neofetch</span></p>
+            </div>`;
+        }, 300); // Wait for modal fade out
+    }
 
 }); // End DOMContentLoaded
